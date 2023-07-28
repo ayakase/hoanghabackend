@@ -17,13 +17,13 @@ app.get('/posts', (req, res) => {
     }, 5000);
 });
 
-async function logMovies() {
-    setTimeout(() => {
-        return 1
-    }, 1000);
-    console.log('two')
-}
-logMovies()
+// async function logMovies() {
+//     setTimeout(() => {
+//         return 1
+//     }, 1000);
+//     console.log('two')
+// }
+// logMovies()
 
 // fetch('https://jsonplaceholder.typicode.com/posts/1')
 //     .then((response) => response.json())
