@@ -7,6 +7,8 @@ const cors = require('cors')
 app.use(cors({
     origin: 'http://localhost:5173'
 }))
+app.set('trust proxy', true);
+
 app.get('/', function (req, res) {
     res.send("Home")
     console.log(req.ip)
