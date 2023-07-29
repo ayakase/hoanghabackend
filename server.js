@@ -10,6 +10,8 @@ app.use(cors({
 app.get('/', function (req, res) {
     res.send("Home")
     console.log(req.ip)
+    const clientIP = req.connection.remoteAddress;
+    console.log(clientIP);
 })
 app.get('/posts', (req, res) => {
     setTimeout(() => {
