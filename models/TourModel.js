@@ -20,6 +20,13 @@ const Tour = sequelize.define('Tour', {
     },
     price: {
         type: DataTypes.INTEGER(255),
+    },
+    tourtype: {
+        type: DataTypes.STRING(255),
+    },
+    departure: {
+        type: DataTypes.STRING(255),
     }
+
 })
 module.exports = Tour;
