@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const PORT = 3000; // You can change the port number if needed
 const cors = require('cors')
+require('dotenv').config();
+
 
 app.use(cors({
     origin: 'http://localhost:5173'
@@ -33,5 +35,5 @@ app.get('/posts', (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT} and ENV is ${process.env.test}`);
 });
