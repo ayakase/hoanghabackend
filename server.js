@@ -3,23 +3,16 @@ const express = require('express');
 const app = express();
 const PORT = 3000; // You can change the port number if needed
 const cors = require('cors')
+const footerRoute = require('./controllers/footerRoute');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 require('dotenv').config();
-
-
 app.use(cors({
     origin: 'http://localhost:5173'
 }))
 app.set('trust proxy', true);
+app.use('/footer', footerRoute);
 
-app.get('/', function (req, res) {
-    res.send("Home")
-    console.log(req.ip)
-})
-app.get('/posts', (req, res) => {
-    setTimeout(() => {
-        res.send('Hi');
-    }, 5000);
-});
 
 // async function logMovies() {
 //     setTimeout(() => {
