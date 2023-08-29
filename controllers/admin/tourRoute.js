@@ -29,4 +29,13 @@ router.post('/', (req, res) => {
         })
 
 });
+router.get('/', (req, res) => {
+    Tour.findAll({
+        order: [["createdAt", "DESC"]]
+    }).then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
+})
 module.exports = router;
