@@ -8,8 +8,7 @@ router.post('/', (req, res) => {
         email: req.body.email,
         note: req.body.note
     })
-        .then((createdForm) => {
-            console.log(createdForm)
+        .then(() => {
             res.json("done");
         }).catch((err) => {
             console.error(err)
