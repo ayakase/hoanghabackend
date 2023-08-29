@@ -41,22 +41,22 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.INTEGER(255),
     },
     special: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
     },
     bonus: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
     },
     visa: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
     },
     detail: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
     },
     priceservice: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
     },
     guide: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
     },
 })
 module.exports = Tour;
