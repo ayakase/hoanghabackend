@@ -1,5 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
+const Category = require('./CategoryModel');
 const Tour = sequelize.define('Tour', {
     id: {
         type: DataTypes.INTEGER,
@@ -13,7 +14,7 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.STRING(255),
     },
     tourcategory: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.INTEGER,
     },
     tourtype: {
         type: DataTypes.STRING(255),
@@ -59,4 +60,6 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.TEXT('long'),
     },
 })
+Category.hasMany(Tour, { foreignKey: 'tourcategory', as: "category" });
+Tour.belongsTo(Category, { foreignKey: 'tourcategory' });
 module.exports = Tour;
