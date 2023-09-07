@@ -3,8 +3,12 @@ const express = require('express');
 const app = express();
 const PORT = 3000; // You can change the port number if needed
 const cors = require('cors')
-const footerRoute = require('./controllers/footerRoute');
-const adminTourRoute = require('./controllers/admin/tourRoute');
+//client
+const clientFooterRoute = require('./controllers/client/footerRoute');
+const clientTourRoute = require('./controllers/client/tourRoute');
+//admin
+const adminTourRoute = require('./controllers/admin/tourManageRoute');
+const adminFooterRoute = require('./controllers/admin/footerManageRoute');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 require('dotenv').config();
@@ -12,8 +16,13 @@ app.use(cors({
     origin: 'http://localhost:5173'
 }))
 app.set('trust proxy', true);
-app.use('/footer', footerRoute);
+
+//client
+app.use('/client/footer', clientFooterRoute);
+app.use('/client/tour/', clientTourRoute)
+//admin
 app.use('/admin/tour', adminTourRoute);
+app.use('/admin/footer', adminFooterRoute);
 
 // async function logMovies() {
 //     setTimeout(() => {

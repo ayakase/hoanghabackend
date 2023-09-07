@@ -17,6 +17,10 @@ const FooterForm = sequelize.define('FooterForm', {
     },
     note: {
         type: DataTypes.STRING(255)
+    },
+    solved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     }
 
 })
