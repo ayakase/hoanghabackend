@@ -11,8 +11,6 @@ const clientEachTourRoute = require('./controllers/client/eachTourRoute');
 const adminTourRoute = require('./controllers/admin/tourManageRoute');
 const adminFooterRoute = require('./controllers/admin/footerManageRoute');
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
 require('dotenv').config();
 app.use(cors({
     origin: 'http://localhost:5173'
