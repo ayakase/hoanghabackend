@@ -6,9 +6,11 @@ const cors = require('cors')
 //client
 const clientFooterRoute = require('./controllers/client/footerRoute');
 const clientTourRoute = require('./controllers/client/tourRoute');
+const clientEachTourRoute = require('./controllers/client/eachTourRoute');
 //admin
 const adminTourRoute = require('./controllers/admin/tourManageRoute');
 const adminFooterRoute = require('./controllers/admin/footerManageRoute');
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 require('dotenv').config();
@@ -20,6 +22,8 @@ app.set('trust proxy', true);
 //client
 app.use('/client/footer', clientFooterRoute);
 app.use('/client/tour/', clientTourRoute)
+app.use('/client/each-tour/', clientEachTourRoute)
+
 //admin
 app.use('/admin/tour', adminTourRoute);
 app.use('/admin/footer', adminFooterRoute);
