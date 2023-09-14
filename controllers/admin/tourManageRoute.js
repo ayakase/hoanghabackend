@@ -4,21 +4,26 @@ const cloudinary = require('../../cloudiraryConfig');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        // Specify the destination folder
-        cb(null, 'thumbnails/');
-    },
-    filename: function (req, file, cb) {
-        // Use the original filename as the saved filename
-        cb(null, file.originalname);
+// const storage1 = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'thumbnails/');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.originalname);
+//     },
+// });
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'thumbnails_folder', // Specify the folder in your Cloudinary account where you want to upload the file.
+        allowed_formats: ['jpg', 'jpeg', 'png', 'gif'], // Add any allowed formats
+        transformation: [{ width: 300, height: 300, crop: 'limit' }], // Optional image transformations
     },
 });
 const upload = multer({ storage: storage });
 const Tour = require('../../models/TourModel')
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
+    console.log(req.file.path);
     // cloudinary.uploader.upload(req.file, (error, result) => {
     //     if (error) {
     //         console.error(error);
@@ -26,30 +31,31 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
     //         console.log(result.secure_url); // This is the URL for the uploaded image
     //     }
     // });
-    // Tour.create({
-    //     title: req.body.tourTitle,
-    //     schedule: req.body.tourSchedule,
-    //     tourcategory: req.body.tourCategory,
-    //     tourtype: req.body.tourType,
-    //     departure: req.body.tourFrom,
-    //     days: req.body.tourLength,
-    //     ishottour: req.body.isHot,
-    //     transportation: req.body.tourTransport,
-    //     adultprice: req.body.adultPrice,
-    //     youngprice: req.body.youngPrice,
-    //     childprice: req.body.childPrice,
-    //     special: req.body.tourSpecial,
-    //     bonus: req.body.tourBonus,
-    //     visa: req.body.tourVisa,
-    //     detail: req.body.tourDetail,
-    //     priceservice: req.body.tourPriceService,
-    //     guide: req.body.tourGuide,
-    // })
-    //     .then(() => {
-    //         res.json("done");
-    //     }).catch((err) => {
-    //         console.error(err)
-    //     })
+    Tour.create({
+        title: req.body.tourTitle,
+        thumbnail: req.file.path,
+        schedule: req.body.tourSchedule,
+        tourcategory: req.body.tourCategory,
+        tourtype: req.body.tourType,
+        departure: req.body.tourFrom,
+        days: req.body.tourLength,
+        ishottour: req.body.isHot,
+        transportation: req.body.tourTransport,
+        adultprice: req.body.adultPrice,
+        youngprice: req.body.youngPrice,
+        childprice: req.body.childPrice,
+        special: req.body.tourSpecial,
+        bonus: req.body.tourBonus,
+        visa: req.body.tourVisa,
+        detail: req.body.tourDetail,
+        priceservice: req.body.tourPriceService,
+        guide: req.body.tourGuide,
+    })
+        .then(() => {
+            res.json("done");
+        }).catch((err) => {
+            console.error(err)
+        })
 
 });
 

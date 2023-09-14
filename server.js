@@ -38,7 +38,7 @@ app.use('/admin/footer', adminFooterRoute);
 //     .then((response) => response.json())
 //     .then((json) => console.log(json));
 
-
+app.timeout = 60000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT} and ENV is ${process.env.TEST}`);
 });

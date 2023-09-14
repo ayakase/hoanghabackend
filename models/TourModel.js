@@ -10,6 +10,9 @@ const Tour = sequelize.define('Tour', {
     title: {
         type: DataTypes.STRING(255),
     },
+    thumbnail: {
+        type: DataTypes.STRING(255),
+    },
     schedule: {
         type: DataTypes.STRING(255),
     },
