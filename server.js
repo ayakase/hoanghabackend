@@ -16,7 +16,9 @@ app.use(cors({
     origin: 'http://localhost:5173'
 }))
 app.set('trust proxy', true);
-
+app.get('/', (req, res) => {
+    res.send('Hoang Ha Tourism Back End')
+})
 //client
 app.use('/client/footer', clientFooterRoute);
 app.use('/client/tour/', clientTourRoute)
