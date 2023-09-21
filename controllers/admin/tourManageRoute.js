@@ -6,15 +6,16 @@ const multer = require('multer');
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: (req, file) => 'thumbnails_folder',
-        allowed_formats: ['jpg', 'jpeg', 'png', 'gif'],
-        transformation: [{ width: 400, height: 400, crop: 'limit' }],
+        folder: async (req, file) => 'thumbnails_folder',
+        allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif'],
+        transformation: [{ width: 400, height: 400 }],
     },
 });
 const upload = multer({ storage: storage });
 const Tour = require('../../models/TourModel')
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
     console.log(req.file.path);
+    // uploadErrorHandler(req, res);
     // cloudinary.uploader.upload(req.file, (error, result) => {
     //     if (error) {
     //         console.error(error);
@@ -48,7 +49,8 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
             console.error(err)
         })
 
-});
+})
+    ;
 // const storage1 = multer.diskStorage({
 //     destination: function (req, file, cb) {
 //         cb(null, 'thumbnails/');

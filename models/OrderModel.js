@@ -1,10 +1,13 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
-const FooterForm = sequelize.define('FooterForm', {
+const Order = sequelize.define('Order', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+    },
+    tour_id: {
+        type: DataTypes.INTEGER,
     },
     name: {
         type: DataTypes.STRING,
@@ -15,6 +18,15 @@ const FooterForm = sequelize.define('FooterForm', {
     email: {
         type: DataTypes.STRING,
     },
+    adult: {
+        type: DataTypes.INTEGER
+    },
+    teenager: {
+        type: DataTypes.INTEGER
+    },
+    children: {
+        type: DataTypes.INTEGER
+    },
     note: {
         type: DataTypes.STRING(255)
     },
@@ -24,4 +36,4 @@ const FooterForm = sequelize.define('FooterForm', {
     }
 
 })
-module.exports = FooterForm;
+module.exports = Order;

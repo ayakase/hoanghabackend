@@ -7,6 +7,7 @@ const cors = require('cors')
 const clientFooterRoute = require('./controllers/client/footerRoute');
 const clientTourRoute = require('./controllers/client/tourRoute');
 const clientEachTourRoute = require('./controllers/client/eachTourRoute');
+const cliendOrderRoute = require('./controllers/client/orderRoute');
 //admin
 const adminTourRoute = require('./controllers/admin/tourManageRoute');
 const adminFooterRoute = require('./controllers/admin/footerManageRoute');
@@ -21,12 +22,15 @@ app.get('/', (req, res) => {
 })
 //client
 app.use('/client/footer', clientFooterRoute);
-app.use('/client/tour/', clientTourRoute)
-app.use('/client/each-tour/', clientEachTourRoute)
+app.use('/client/tour', clientTourRoute);
+app.use('/client/order', cliendOrderRoute);
+app.use('/client/each-tour', clientEachTourRoute);
 
 //admin
 app.use('/admin/tour', adminTourRoute);
 app.use('/admin/footer', adminFooterRoute);
+app.use('/admin/order', cliendOrderRoute);
+
 
 // async function logMovies() {
 //     setTimeout(() => {
