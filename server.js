@@ -16,6 +16,7 @@ require('dotenv').config();
 app.use(cors({
     origin: process.env.FE_URL
 }))
+console.log(process.env.FE_URL);
 app.set('trust proxy', true);
 app.get('/connect', (req, res) => {
     res.send('Connected to Backend')
