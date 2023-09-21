@@ -14,11 +14,11 @@ const adminFooterRoute = require('./controllers/admin/footerManageRoute');
 
 require('dotenv').config();
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: process.env.FE_URL
 }))
 app.set('trust proxy', true);
-app.get('/', (req, res) => {
-    res.send('Hoang Ha Tourism Back End')
+app.get('/connect', (req, res) => {
+    res.send('Connected to Backend')
 })
 //client
 app.use('/client/footer', clientFooterRoute);
