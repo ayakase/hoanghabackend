@@ -62,8 +62,6 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
 // });
 
 router.get('/:category/:order/:page', (req, res) => {
-    console.log(req.params.category);
-    const category = {}
     const whereCondition = req.params.category !== '0' ? { tourcategory: req.params.category } : {};
     Tour.findAndCountAll({
         where: whereCondition,
