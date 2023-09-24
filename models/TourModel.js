@@ -63,6 +63,6 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.TEXT('long'),
     },
 })
-Category.hasMany(Tour, { foreignKey: 'tourcategory', as: "category" });
+Category.hasMany(Tour, { foreignKey: 'tourcategory' });
 Tour.belongsTo(Category, { foreignKey: 'tourcategory' });
 module.exports = Tour;

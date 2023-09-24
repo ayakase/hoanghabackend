@@ -1,5 +1,5 @@
-const FooterForm = require('../models/FooterFormModel');
-FooterForm.sync({ force: true })
+const Advisory = require('../models/AdvisoryModel');
+Advisory.sync({ force: true })
     .then(() => {
         console.log('User table created successfully.');
     })

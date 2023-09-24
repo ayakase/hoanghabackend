@@ -1,6 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
-const FooterForm = sequelize.define('FooterForm', {
+const Advisory = sequelize.define('Advisory', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -18,10 +18,14 @@ const FooterForm = sequelize.define('FooterForm', {
     note: {
         type: DataTypes.STRING(255)
     },
+    tour: {
+        type: DataTypes.INTEGER,
+        defaultValue: null
+    },
     solved: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     }
 
 })
-module.exports = FooterForm;
+module.exports = Advisory;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const FooterForm = require('../../models/FooterFormModel');
+const Advisory = require('../../models/AdvisoryModel');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -8,7 +8,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 router.post('/', upload.none(), (req, res) => {
-    FooterForm.create({
+    Advisory.create({
         name: req.body.name,
         phone: req.body.phone,
         email: req.body.email,

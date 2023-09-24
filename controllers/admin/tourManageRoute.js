@@ -13,6 +13,7 @@ const storage = new CloudinaryStorage({
 });
 const upload = multer({ storage: storage });
 const Tour = require('../../models/TourModel')
+const Category = require('../../models/CategoryModel')
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
     console.log(req.file.path);
     // uploadErrorHandler(req, res);
@@ -64,6 +65,10 @@ router.get('/:category/:order/:page', (req, res) => {
     console.log(req.params.category);
     Tour.findAndCountAll({
         where: { tourcategory: req.params.category },
+        include: {
+            model: Category, // 'Movies' would also work
+            // key: 'id'
+        },
         order: [["createdAt", req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10

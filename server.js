@@ -4,13 +4,13 @@ const app = express();
 const PORT = 3000; // You can change the port number if needed
 const cors = require('cors')
 //client
-const clientFooterRoute = require('./controllers/client/footerRoute');
+const clientAdvisoryRoute = require('./controllers/client/advisoryRoute');
 const clientTourRoute = require('./controllers/client/tourRoute');
 const clientEachTourRoute = require('./controllers/client/eachTourRoute');
 const cliendOrderRoute = require('./controllers/client/orderRoute');
 //admin
 const adminTourRoute = require('./controllers/admin/tourManageRoute');
-const adminFooterRoute = require('./controllers/admin/footerManageRoute');
+const adminAdvisoryRoute = require('./controllers/admin/advisoryManageRoute');
 
 require('dotenv').config();
 app.use(cors({
@@ -22,14 +22,14 @@ app.get('/connect', (req, res) => {
     res.send('Connected to Backend')
 })
 //client
-app.use('/client/footer', clientFooterRoute);
+app.use('/client/advisory', clientAdvisoryRoute);
 app.use('/client/tour', clientTourRoute);
 app.use('/client/order', cliendOrderRoute);
 app.use('/client/each-tour', clientEachTourRoute);
 
 //admin
 app.use('/admin/tour', adminTourRoute);
-app.use('/admin/footer', adminFooterRoute);
+app.use('/admin/advisory', adminAdvisoryRoute);
 app.use('/admin/order', cliendOrderRoute);
 
 

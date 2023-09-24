@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const FooterForm = require('../../models/FooterFormModel');
+const Advisory = require('../../models/AdvisoryModel');
 router.get('/:order/:page', (req, res) => {
     console.log(req.params);
-    FooterForm.findAndCountAll({
+    Advisory.findAndCountAll({
         order: [["createdAt", req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10
