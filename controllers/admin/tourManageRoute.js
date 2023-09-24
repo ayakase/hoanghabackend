@@ -63,11 +63,12 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
 
 router.get('/:category/:order/:page', (req, res) => {
     console.log(req.params.category);
+    const category = {}
+    const whereCondition = req.params.category !== '0' ? { tourcategory: req.params.category } : {};
     Tour.findAndCountAll({
-        where: { tourcategory: req.params.category },
+        where: whereCondition,
         include: {
-            model: Category, // 'Movies' would also work
-            // key: 'id'
+            model: Category,
         },
         order: [["createdAt", req.params.order]],
         limit: 10,
