@@ -33,6 +33,7 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
         departure: req.body.tourFrom,
         days: req.body.tourLength,
         ishottour: req.body.isHot,
+        recommend: req.body.recommend,
         transportation: req.body.tourTransport,
         adultprice: req.body.adultPrice,
         youngprice: req.body.youngPrice,

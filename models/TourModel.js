@@ -32,6 +32,10 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
+    recommend: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
     transportation: {
         type: DataTypes.STRING(255),
     },
