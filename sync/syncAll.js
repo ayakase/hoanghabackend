@@ -11,6 +11,7 @@ async function syncModelsSequentially() {
 
         await Category.sync({ force: true });
         console.log('Category table created');
+        
         await Category.bulkCreate([
             {
                 id: 1,
@@ -28,15 +29,13 @@ async function syncModelsSequentially() {
                 note: "none"
             }]),
             console.log('Input categories');
-        // Sync Tour model
+        
         await Tour.sync({ force: true });
         console.log('Tour table created');
 
-        // Sync Order model
         await Order.sync({ force: true });
         console.log('Order table created');
 
-        // Sync FooterForm model
         await Advisory.sync({ force: true });
         console.log('Advisory table created');
     } catch (error) {
