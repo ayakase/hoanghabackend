@@ -18,13 +18,11 @@ router.post('/', upload.none(), (req, res) => {
         adult: req.body.adult,
         teenager: req.body.teenager,
         children: req.body.children
-
     })
         .then(() => {
             res.json("done");
         }).catch((err) => {
             console.error(err)
         })
-    console.log(req.body.name)
 });
 module.exports = router;

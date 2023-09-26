@@ -35,7 +35,6 @@ const Order = sequelize.define('Order', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     }
-
 })
 Tour.hasMany(Order, { foreignKey: 'tour_id' });
 Order.belongsTo(Tour, { foreignKey: 'tour_id' });
