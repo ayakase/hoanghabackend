@@ -28,7 +28,7 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
         title: req.body.tourTitle,
         thumbnail: req.file.path,
         schedule: req.body.tourSchedule,
-        tourcategory: req.body.tourCategory,
+        category_id: req.body.tourCategory,
         tourtype: req.body.tourType,
         departure: req.body.tourFrom,
         days: req.body.tourLength,
@@ -63,7 +63,7 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
 // });
 
 router.get('/:category/:order/:page', (req, res) => {
-    const whereCondition = req.params.category !== '0' ? { tourcategory: req.params.category } : {};
+    const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
     Tour.findAndCountAll({
         where: whereCondition,
         include: {

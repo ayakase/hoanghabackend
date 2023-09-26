@@ -4,7 +4,7 @@ const Tour = require('../../models/TourModel')
 router.get('/:category/:orderby/:order/:page', (req, res) => {
     console.log(req.params.category);
     Tour.findAndCountAll({
-        where: { tourcategory: req.params.category },
+        where: { category_id: req.params.category },
         order: [[req.params.orderby, req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10

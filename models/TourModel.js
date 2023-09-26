@@ -16,7 +16,7 @@ const Tour = sequelize.define('Tour', {
     schedule: {
         type: DataTypes.STRING(255),
     },
-    tourcategory: {
+    category_id: {
         type: DataTypes.INTEGER,
     },
     tourtype: {
@@ -67,6 +67,6 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.TEXT('long'),
     },
 })
-Category.hasMany(Tour, { foreignKey: 'tourcategory' });
-Tour.belongsTo(Category, { foreignKey: 'tourcategory' });
+Category.hasMany(Tour, { foreignKey: 'category_id' });
+Tour.belongsTo(Category, { foreignKey: 'category_id' });
 module.exports = Tour;

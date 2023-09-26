@@ -1,5 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
+const Tour = require('./TourModel');
 const Order = sequelize.define('Order', {
     id: {
         type: DataTypes.INTEGER,
@@ -36,4 +37,6 @@ const Order = sequelize.define('Order', {
     }
 
 })
+Tour.hasMany(Order, { foreignKey: 'tour_id' });
+Order.belongsTo(Tour, { foreignKey: 'tour_id' });
 module.exports = Order;

@@ -7,10 +7,12 @@ const cors = require('cors')
 const clientAdvisoryRoute = require('./controllers/client/advisoryRoute');
 const clientTourRoute = require('./controllers/client/tourRoute');
 const clientEachTourRoute = require('./controllers/client/eachTourRoute');
-const cliendOrderRoute = require('./controllers/client/orderRoute');
+const clientOrderRoute = require('./controllers/client/orderRoute');
 //admin
 const adminTourRoute = require('./controllers/admin/tourManageRoute');
 const adminAdvisoryRoute = require('./controllers/admin/advisoryManageRoute');
+const adminOrderRoute = require('./controllers/admin/orderManageRoute');
+
 
 require('dotenv').config();
 app.use(cors({
@@ -24,13 +26,13 @@ app.get('/connect', (req, res) => {
 //client
 app.use('/client/advisory', clientAdvisoryRoute);
 app.use('/client/tour', clientTourRoute);
-app.use('/client/order', cliendOrderRoute);
+app.use('/client/order', clientOrderRoute);
 app.use('/client/each-tour', clientEachTourRoute);
 
 //admin
 app.use('/admin/tour', adminTourRoute);
 app.use('/admin/advisory', adminAdvisoryRoute);
-app.use('/admin/order', cliendOrderRoute);
+app.use('/admin/order', adminOrderRoute);
 
 
 // async function logMovies() {
