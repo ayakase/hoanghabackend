@@ -66,6 +66,10 @@ const Tour = sequelize.define('Tour', {
     guide: {
         type: DataTypes.TEXT('long'),
     },
+    order_count: {
+        type: DataTypes.INTEGER(255),
+        defaultValue: 0,
+    }
 })
 Category.hasMany(Tour, { foreignKey: 'category_id' });
 Tour.belongsTo(Category, { foreignKey: 'category_id' });

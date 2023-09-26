@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../../models/OrderModel');
+const Tour = require('../../models/TourModel')
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -21,6 +22,7 @@ router.post('/', upload.none(), (req, res) => {
     })
         .then(() => {
             res.json("done");
+            Tour.increment('order_count', { by: 1, where: { id: req.body.tourId } })
         }).catch((err) => {
             console.error(err)
         })
