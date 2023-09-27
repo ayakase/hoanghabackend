@@ -19,7 +19,7 @@ router.get('/:page', async (req, res) => {
     console.log(req.params.page);
     try {
         const folderName = 'images-collection';
-        const page = parseInt(req.query.page) || 1;
+        // const page = parseInt(req.params.page) || 1;
         const perPage = 10;
         const result = await cloudinary.search
             .expression(`folder:${folderName}`)
@@ -28,6 +28,7 @@ router.get('/:page', async (req, res) => {
             // .next_cursor(page - 1)
             .execute();
         console.log(result);
+        res.send(result);
     } catch (err) {
         console.error(err);
     }
