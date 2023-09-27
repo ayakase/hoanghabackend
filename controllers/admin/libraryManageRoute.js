@@ -23,7 +23,7 @@ router.get('/:page', async (req, res) => {
         const perPage = 30;
         const result = await cloudinary.search
             .expression(`folder:${folderName}`)
-            .sort_by('public_id', 'desc')
+            .sort_by('created_at', 'desc')
             .max_results(perPage)
             // .next_cursor(page - 1)
             .execute();
