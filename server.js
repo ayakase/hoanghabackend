@@ -10,6 +10,7 @@ const clientEachTourRoute = require('./controllers/client/eachTourRoute');
 const clientOrderRoute = require('./controllers/client/orderRoute');
 //admin
 const adminTourRoute = require('./controllers/admin/tourManageRoute');
+const adminHotTourRoute = require('./controllers/admin/hotTourManageRoute');
 const adminAdvisoryRoute = require('./controllers/admin/advisoryManageRoute');
 const adminOrderRoute = require('./controllers/admin/orderManageRoute');
 
@@ -31,6 +32,7 @@ app.use('/client/each-tour', clientEachTourRoute);
 
 //admin
 app.use('/admin/tour', adminTourRoute);
+app.use('/admin/hottour', adminHotTourRoute);
 app.use('/admin/advisory', adminAdvisoryRoute);
 app.use('/admin/order', adminOrderRoute);
 
