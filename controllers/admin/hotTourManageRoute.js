@@ -37,13 +37,5 @@ router.get('/:category/:order/:page', (req, res) => {
         console.error(error);
     })
 })
-// router.delete('/:id', (req, res) => {
-//     Tour.destroy({ where: { id: req.params.id } })
-//         .then((result) => {
-//             console.log(result)
-//             res.send("done")
-//         }).catch((error) => {
-//             console.error(error);
-//         })
-// })
+
 module.exports = router;

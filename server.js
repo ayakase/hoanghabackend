@@ -6,6 +6,8 @@ const cors = require('cors')
 //client
 const clientAdvisoryRoute = require('./controllers/client/advisoryRoute');
 const clientTourRoute = require('./controllers/client/tourRoute');
+const clientHotTourRoute = require('./controllers/client/hotTourRoute');
+
 const clientEachTourRoute = require('./controllers/client/eachTourRoute');
 const clientOrderRoute = require('./controllers/client/orderRoute');
 //admin
@@ -27,6 +29,7 @@ app.get('/connect', (req, res) => {
 //client
 app.use('/client/advisory', clientAdvisoryRoute);
 app.use('/client/tour', clientTourRoute);
+app.use('/client/hottour', clientHotTourRoute);
 app.use('/client/order', clientOrderRoute);
 app.use('/client/each-tour', clientEachTourRoute);
 
