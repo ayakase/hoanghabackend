@@ -20,7 +20,7 @@ router.get('/:page', async (req, res) => {
     try {
         const folderName = 'images-collection';
         // const page = parseInt(req.params.page) || 1;
-        const perPage = 10;
+        const perPage = 30;
         const result = await cloudinary.search
             .expression(`folder:${folderName}`)
             .sort_by('public_id', 'desc')
