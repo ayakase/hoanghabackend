@@ -15,7 +15,7 @@ const adminTourRoute = require('./controllers/admin/tourManageRoute');
 const adminHotTourRoute = require('./controllers/admin/hotTourManageRoute');
 const adminAdvisoryRoute = require('./controllers/admin/advisoryManageRoute');
 const adminOrderRoute = require('./controllers/admin/orderManageRoute');
-
+const adminLibraryRoute = require('./controllers/admin/libraryManageRoute');
 
 require('dotenv').config();
 app.use(cors({
@@ -38,19 +38,7 @@ app.use('/admin/tour', adminTourRoute);
 app.use('/admin/hottour', adminHotTourRoute);
 app.use('/admin/advisory', adminAdvisoryRoute);
 app.use('/admin/order', adminOrderRoute);
-
-
-// async function logMovies() {
-//     setTimeout(() => {
-//         return 1
-//     }, 1000);
-//     console.log('two')
-// }
-// logMovies()
-
-// fetch('https://jsonplaceholder.typicode.com/posts/1')
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+app.use('/admin/library', adminLibraryRoute);
 
 app.timeout = 60000;
 app.listen(PORT, () => {
