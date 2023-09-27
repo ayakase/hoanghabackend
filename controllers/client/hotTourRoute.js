@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const Tour = require('../../models/TourModel')
+const Category = require('../../models/CategoryModel')
+
 router.get('/:orderby/:order/:page', (req, res) => {
     // console.log(req.params.category);
     Tour.findAndCountAll({
         where: { ishottour: 1 },
+        include: {
+            model: Category,
+        },
         order: [[req.params.orderby, req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10
@@ -15,13 +20,13 @@ router.get('/:orderby/:order/:page', (req, res) => {
         console.error(error);
     })
 })
-router.delete('/:id', (req, res) => {
-    Tour.destroy({ where: { id: req.params.id } })
-        .then((result) => {
-            console.log(result)
-            res.send("done")
-        }).catch((error) => {
-            console.error(error);
-        })
-})
+// router.delete('/:id', (req, res) => {
+//     Tour.destroy({ where: { id: req.params.id } })
+//         .then((result) => {
+//             console.log(result)
+//             res.send("done")
+//         }).catch((error) => {
+//             console.error(error);
+//         })
+// })
 module.exports = router;
