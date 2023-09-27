@@ -17,7 +17,7 @@ const Category = require('../../models/CategoryModel')
 router.get('/:category/:order/:page', (req, res) => {
     // const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
     const whereCondition = {
-        ishottour: 0 // New condition: isHotTour should be 1
+        ishottour: 1 // New condition: isHotTour should be 1
     };
     if (req.params.category !== '0') {
         whereCondition.category_id = req.params.category;
