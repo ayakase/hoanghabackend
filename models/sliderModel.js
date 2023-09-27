@@ -6,26 +6,13 @@ const Slider = sequelize.define('Slider', {
         primaryKey: true,
         autoIncrement: true,
     },
-    name: {
+    image_src: {
         type: DataTypes.STRING,
+        defaultValue: 'https://res.cloudinary.com/dxkmteupm/image/upload/v1695811427/slider-place-holder/awdwsr7ea2zysv4e2tak.jpg'
     },
-    phone: {
+    tour_url: {
         type: DataTypes.STRING,
-    },
-    email: {
-        type: DataTypes.STRING,
-    },
-    note: {
-        type: DataTypes.STRING(255)
-    },
-    tour: {
-        type: DataTypes.INTEGER,
-        defaultValue: null
-    },
-    solved: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: ''
     }
-
 })
 module.exports = Advisory;
