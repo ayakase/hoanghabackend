@@ -15,16 +15,16 @@ const upload = multer({ storage: storage });
 // router.post('/', upload.single('tourThumbnail'), (req, res) => {
 //     console.log(req.file.path);
 // });
-router.get('/:page', async (req, res) => {
+router.get('/:cursor', async (req, res) => {
     try {
         const folderName = 'images-collection';
-        const page = parseInt(req.params.page);
+        const page = req.params.cursor ;
         const perPage = 10;
         const result = await cloudinary.search
             .expression(`folder:${folderName}`)
             .sort_by('created_at', 'desc')
             .max_results(perPage)
-            // .next_cursor(page)
+            .next_cursor(page)
             .execute();
         console.log(result);
         res.send(result);
