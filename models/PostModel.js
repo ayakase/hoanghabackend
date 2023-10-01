@@ -1,6 +1,5 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
-const Category = require('./CategoryModel');
 const Tour = sequelize.define('Tour', {
     id: {
         type: DataTypes.INTEGER,
