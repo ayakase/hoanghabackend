@@ -1,5 +1,7 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
+const Tour = require('./TourModel');
+
 const Advisory = sequelize.define('Advisory', {
     id: {
         type: DataTypes.INTEGER,
@@ -18,7 +20,7 @@ const Advisory = sequelize.define('Advisory', {
     note: {
         type: DataTypes.STRING(255)
     },
-    tour: {
+    tour_id: {
         type: DataTypes.INTEGER,
         defaultValue: null
     },
@@ -26,6 +28,7 @@ const Advisory = sequelize.define('Advisory', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     }
-
 })
+Tour.hasMany(Advisory, { foreignKey: 'tour_id' });
+Advisory.belongsTo(Tour, { foreignKey: 'tour_id' });
 module.exports = Advisory;

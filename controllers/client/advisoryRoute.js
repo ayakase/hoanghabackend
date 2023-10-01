@@ -12,7 +12,8 @@ router.post('/', upload.none(), (req, res) => {
         name: req.body.name,
         phone: req.body.phone,
         email: req.body.email,
-        note: req.body.note
+        note: req.body.note,
+        tour_id: req.body.tour_id
     })
         .then(() => {
             res.json("done");
