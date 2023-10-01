@@ -6,15 +6,16 @@ const multer = require('multer');
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: async (req, file) => 'thumbnails_folder',
-        allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif'],
-        transformation: [{ width: 500, height: 500 }],
+        folder: async (req, file) => 'images-collection',
+        allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+        transformation: [{ width: 1000, height: 500 }],
     },
 });
 const upload = multer({ storage: storage });
-// router.post('/', upload.single('tourThumbnail'), (req, res) => {
-//     console.log(req.file.path);
-// });
+router.post('/',  upload.array('images',10),(req, res) => {
+    console.log(req.files)
+    res.send("success")
+});
 router.get('/', async (req, res) => {
     try {
         const folderName = 'images-collection';
@@ -24,7 +25,6 @@ router.get('/', async (req, res) => {
             .sort_by('created_at', 'desc')
             .max_results(perPage)
             .execute();
-        console.log(result);
         res.send(result);
     } catch (err) {
         console.error(err);
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
 router.get('/:cursor', async (req, res) => {
     try {
         const folderName = 'images-collection';
-        const perPage = 10;
+        const perPage = 20;
         const result = await cloudinary.search
             .expression(`folder:${folderName}`)
             .sort_by('created_at', 'desc')
