@@ -15,16 +15,14 @@ const upload = multer({ storage: storage });
 // router.post('/', upload.single('tourThumbnail'), (req, res) => {
 //     console.log(req.file.path);
 // });
-router.get('/:cursor', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const folderName = 'images-collection';
-        const page = req.params.cursor ;
-        const perPage = 10;
+        const perPage = 20;
         const result = await cloudinary.search
             .expression(`folder:${folderName}`)
             .sort_by('created_at', 'desc')
             .max_results(perPage)
-            .next_cursor(page)
             .execute();
         console.log(result);
         res.send(result);
@@ -33,5 +31,21 @@ router.get('/:cursor', async (req, res) => {
     }
 
 })
+router.get('/:cursor', async (req, res) => {
+    try {
+        const folderName = 'images-collection';
+        const perPage = 10;
+        const result = await cloudinary.search
+            .expression(`folder:${folderName}`)
+            .sort_by('created_at', 'desc')
+            .max_results(perPage)
+            .next_cursor(req.params.cursor)
+            .execute();
+        console.log(result);
+        res.send(result);
+    } catch (err) {
+        console.error(err);
+    }
 
+})
 module.exports = router;

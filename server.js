@@ -7,7 +7,6 @@ const cors = require('cors')
 const clientAdvisoryRoute = require('./controllers/client/advisoryRoute');
 const clientTourRoute = require('./controllers/client/tourRoute');
 const clientHotTourRoute = require('./controllers/client/hotTourRoute');
-
 const clientEachTourRoute = require('./controllers/client/eachTourRoute');
 const clientOrderRoute = require('./controllers/client/orderRoute');
 //admin
