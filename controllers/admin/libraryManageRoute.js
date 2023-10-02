@@ -8,7 +8,7 @@ const storage = new CloudinaryStorage({
     params: {
         folder: async (req, file) => 'images-collection',
         allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-        transformation: [{ width: 1000, height: 500 }],
+        transformation: [{ width: 1500 }],
     },
 });
 const upload = multer({ storage: storage });

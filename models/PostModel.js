@@ -1,6 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
-const Tour = sequelize.define('Tour', {
+const Post = sequelize.define('Post', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -19,4 +19,4 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.STRING(255),
     }
 })
-module.exports = Tour;
+module.exports = Post;

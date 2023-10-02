@@ -9,7 +9,7 @@ const storage = new CloudinaryStorage({
         folder: async (req, file) => 'thumbnails_folder',
         allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif'],
         transformation: [{ width: 400, height: 400 }],
-    },
+},
 });
 const upload = multer({ storage: storage });
 const Tour = require('../../models/TourModel')

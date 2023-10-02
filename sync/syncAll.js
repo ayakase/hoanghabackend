@@ -2,16 +2,15 @@ const Tour = require('../models/TourModel')
 const Order = require('../models/OrderModel');
 const Category = require('../models/CategoryModel');
 const Advisory = require('../models/AdvisoryModel');
+const Post = require('../models/PostModel')
 const sequelize = require('../connect');
 
 async function syncModelsSequentially() {
     try {
         // Sync Category model
         await sequelize.drop();
-
         await Category.sync({ force: true });
         console.log('Category table created');
-        
         await Category.bulkCreate([
             {
                 id: 1,
@@ -38,6 +37,8 @@ async function syncModelsSequentially() {
 
         await Advisory.sync({ force: true });
         console.log('Advisory table created');
+        await Post.sync({ force: true });
+        console.log('Post table created');
     } catch (error) {
         console.error('Error creating tables:', error);
     }
