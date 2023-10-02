@@ -13,6 +13,9 @@ const Tour = sequelize.define('Tour', {
     thumbnail: {
         type: DataTypes.STRING(255),
     },
+    images: {
+        type: DataTypes.TEXT
+    },
     schedule: {
         type: DataTypes.STRING(255),
     },
