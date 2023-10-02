@@ -17,6 +17,9 @@ const Post = sequelize.define('Post', {
     },
     tour_link: {
         type: DataTypes.STRING(255),
+    },
+    publish:{
+        type: DataTypes.BOOLEAN(true)
     }
 })
 module.exports = Post;
