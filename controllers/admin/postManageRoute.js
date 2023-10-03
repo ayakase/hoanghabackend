@@ -17,7 +17,6 @@ const Category = require("../../models/CategoryModel");
 router.post("/", upload.single("postThumbnail"), (req, res) => {
   console.log(req.file.path);
   console.log(req.body);
-  res.send("done");
   Post.create({
     title: req.body.postTitle,
     thumbnail: req.file.path,
