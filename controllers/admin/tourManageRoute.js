@@ -8,8 +8,8 @@ const storage = new CloudinaryStorage({
     params: {
         folder: async (req, file) => 'thumbnails_folder',
         allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif'],
-        transformation: [{ width: 400, height: 400 }],
-},
+        transformation: [{ width: 500 }],
+    },
 });
 const upload = multer({ storage: storage });
 const Tour = require('../../models/TourModel')

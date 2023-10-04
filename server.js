@@ -9,6 +9,7 @@ const clientTourRoute = require("./controllers/client/tourRoute");
 const clientHotTourRoute = require("./controllers/client/hotTourRoute");
 const clientEachTourRoute = require("./controllers/client/eachTourRoute");
 const clientOrderRoute = require("./controllers/client/orderRoute");
+const clientCarouselRoute = require("./controllers/client/carouselRoute")
 //admin
 const adminTourRoute = require("./controllers/admin/tourManageRoute");
 const adminHotTourRoute = require("./controllers/admin/hotTourManageRoute");
@@ -16,6 +17,7 @@ const adminAdvisoryRoute = require("./controllers/admin/advisoryManageRoute");
 const adminOrderRoute = require("./controllers/admin/orderManageRoute");
 const adminLibraryRoute = require("./controllers/admin/libraryManageRoute");
 const adminPostRoute = require("./controllers/admin/postManageRoute");
+const req = require("express/lib/request");
 require("dotenv").config();
 app.use(
   cors({
@@ -33,6 +35,7 @@ app.use("/client/tour", clientTourRoute);
 app.use("/client/hottour", clientHotTourRoute);
 app.use("/client/order", clientOrderRoute);
 app.use("/client/each-tour", clientEachTourRoute);
+app.use("/client/carousel", clientCarouselRoute)
 
 //admin
 app.use("/admin/tour", adminTourRoute);
