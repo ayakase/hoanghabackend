@@ -13,12 +13,12 @@ const Post = sequelize.define('Post', {
         type: DataTypes.STRING(255),
     },
     content: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.TEXT,
     },
     tour_link: {
         type: DataTypes.STRING(255),
     },
-    publish:{
+    publish: {
         type: DataTypes.BOOLEAN(true)
     }
 })
