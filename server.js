@@ -8,6 +8,7 @@ const clientAdvisoryRoute = require("./controllers/client/advisoryRoute");
 const clientTourRoute = require("./controllers/client/tourRoute");
 const clientHotTourRoute = require("./controllers/client/hotTourRoute");
 const clientEachTourRoute = require("./controllers/client/eachTourRoute");
+const clientEachPostRoute = require("./controllers/client/eachPostRoute");
 const clientOrderRoute = require("./controllers/client/orderRoute");
 const clientCarouselRoute = require("./controllers/client/carouselRoute")
 //admin
@@ -35,6 +36,8 @@ app.use("/client/tour", clientTourRoute);
 app.use("/client/hottour", clientHotTourRoute);
 app.use("/client/order", clientOrderRoute);
 app.use("/client/each-tour", clientEachTourRoute);
+app.use("/client/each-post", clientEachPostRoute);
+
 app.use("/client/carousel", clientCarouselRoute)
 
 //admin
