@@ -15,8 +15,6 @@ const upload = multer({ storage: storage });
 const Post = require("../../models/PostModel");
 const Category = require("../../models/CategoryModel");
 router.post("/", upload.single("postThumbnail"), (req, res) => {
-  console.log(req.file.path);
-  console.log(req.body);
   Post.create({
     title: req.body.postTitle,
     thumbnail: req.file.path,
