@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Tour = require('../../models/TourModel')
 const Category = require('../../models/CategoryModel')
-router.get('/:id', (req, res) => {
-    console.log(req.params.id);
+router.get('/:slug', (req, res) => {
+    console.log(req.params.slug)
     Tour.findAll({
-        where: { id: req.params.id },
+        where: { slug: req.params.slug },
         include: {
             model: Category
         }

@@ -13,8 +13,14 @@ const Tour = sequelize.define('Tour', {
     thumbnail: {
         type: DataTypes.STRING(255),
     },
+    slug: {
+        type: DataTypes.STRING(255)
+    },
     images: {
         type: DataTypes.TEXT
+    },
+    tik_tok_id: {
+        type: DataTypes.STRING(255)
     },
     schedule: {
         type: DataTypes.STRING(255),
@@ -42,14 +48,17 @@ const Tour = sequelize.define('Tour', {
     transportation: {
         type: DataTypes.STRING(255),
     },
-    adultprice: {
+    adult_price: {
         type: DataTypes.INTEGER(255),
     },
-    youngprice: {
+    teenager_price: {
         type: DataTypes.INTEGER(255),
     },
-    childprice: {
+    child_price: {
         type: DataTypes.INTEGER(255),
+    },
+    infant_price:{
+        type: DataTypes.INTEGER(255)
     },
     special: {
         type: DataTypes.TEXT('long'),

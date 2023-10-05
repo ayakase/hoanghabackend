@@ -4,7 +4,7 @@ const Category = require('../models/CategoryModel');
 const Advisory = require('../models/AdvisoryModel');
 const Post = require('../models/PostModel')
 const sequelize = require('../connect');
-
+const Slider = require('../models/SliderModel');
 async function syncModelsSequentially() {
     try {
         // Sync Category model
@@ -28,7 +28,7 @@ async function syncModelsSequentially() {
                 note: "none"
             }]),
             console.log('Input categories');
-        
+
         await Tour.sync({ force: true });
         console.log('Tour table created');
 
@@ -39,6 +39,8 @@ async function syncModelsSequentially() {
         console.log('Advisory table created');
         await Post.sync({ force: true });
         console.log('Post table created');
+        await Slider.sync({ force: true });
+        console.log('Slider table created');
     } catch (error) {
         console.error('Error creating tables:', error);
     }

@@ -3,6 +3,7 @@ const router = express.Router();
 const cloudinary = require('../../cloudiraryConfig');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
+const slugify = require('slugify')
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
@@ -16,17 +17,15 @@ const Tour = require('../../models/TourModel')
 const Category = require('../../models/CategoryModel')
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
     console.log(req.file.path);
-    // uploadErrorHandler(req, res);
-    // cloudinary.uploader.upload(req.file, (error, result) => {
-    //     if (error) {
-    //         console.error(error);
-    //     } else {
-    //         console.log(result.secure_url); // This is the URL for the uploaded image
-    //     }
-    // });
+    let slug = slugify(req.body.slug, {
+        locale: 'vi',
+        lower: true,
+    })
     Tour.create({
         title: req.body.tourTitle,
         thumbnail: req.file.path,
+        slug: slug,
+        tik_tok_id: req.body.tiktokId,
         schedule: req.body.tourSchedule,
         category_id: req.body.tourCategory,
         tourtype: req.body.tourType,
@@ -35,9 +34,10 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
         ishottour: req.body.isHot,
         recommend: req.body.recommend,
         transportation: req.body.tourTransport,
-        adultprice: req.body.adultPrice,
-        youngprice: req.body.youngPrice,
-        childprice: req.body.childPrice,
+        adult_price: req.body.adultPrice,
+        teenager_price: req.body.teenagerPrice,
+        child_price: req.body.childPrice,
+        infant_price: req.body.infantPrice,
         special: req.body.tourSpecial,
         bonus: req.body.tourBonus,
         visa: req.body.tourVisa,

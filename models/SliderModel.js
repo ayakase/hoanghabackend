@@ -6,6 +6,9 @@ const Slider = sequelize.define('Slider', {
         primaryKey: true,
         autoIncrement: true,
     },
+    title: {
+        type: DataTypes.STRING,
+    },
     image_src: {
         type: DataTypes.STRING,
         defaultValue: 'https://res.cloudinary.com/dxkmteupm/image/upload/v1695811427/slider-place-holder/awdwsr7ea2zysv4e2tak.jpg'
@@ -15,4 +18,4 @@ const Slider = sequelize.define('Slider', {
         defaultValue: ''
     }
 })
-module.exports = Advisory;
+module.exports = Slider;

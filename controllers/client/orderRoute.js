@@ -18,7 +18,8 @@ router.post('/', upload.none(), (req, res) => {
         note: req.body.note,
         adult: req.body.adult,
         teenager: req.body.teenager,
-        children: req.body.children
+        children: req.body.children,
+        infant: req.body.infant
     })
         .then(() => {
             res.json("done");
