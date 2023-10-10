@@ -31,7 +31,6 @@ async function syncModelsSequentially() {
                 note: "none"
             }]),
             console.log('Input categories');
-        awa
         await Count.sync({ force: true })
         console.log('Count Created')
         await Count.create({
