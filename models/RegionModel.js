@@ -2,7 +2,7 @@ const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
 
 
-const Category = sequelize.define('Category', {
+const Region = sequelize.define('Region', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -13,6 +13,7 @@ const Category = sequelize.define('Category', {
     note: {
         type: DataTypes.STRING(255)
     }
+
 })
 
-module.exports = Category;
+module.exports = Region;

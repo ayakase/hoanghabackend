@@ -1,10 +1,13 @@
 const Tour = require('../models/TourModel')
 const Order = require('../models/OrderModel');
 const Category = require('../models/CategoryModel');
+const Location = require('../models/LocationModel');
+const Region = require('../models/RegionModel');
 const Advisory = require('../models/AdvisoryModel');
 const Post = require('../models/PostModel')
 const sequelize = require('../connect');
 const Slider = require('../models/SliderModel');
+const Count = require('../models/CountModel');
 async function syncModelsSequentially() {
     try {
         // Sync Category model
@@ -28,7 +31,13 @@ async function syncModelsSequentially() {
                 note: "none"
             }]),
             console.log('Input categories');
-
+        awa
+        await Count.sync({ force: true })
+        console.log('Count Created')
+        await Count.create({
+            id: 1,
+            count: 0
+        })
         await Tour.sync({ force: true });
         console.log('Tour table created');
 

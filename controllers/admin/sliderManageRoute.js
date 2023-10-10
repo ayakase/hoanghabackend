@@ -8,7 +8,7 @@ const storage = new CloudinaryStorage({
     params: {
         folder: async (req, file) => "slider-images",
         allowed_formats: async (req, file) => ["jpg", "jpeg", "png", "gif", "webp"],
-        transformation: [{ width: 1500 }],
+        transformation: [{ width: 1000 }],
     },
 });
 const upload = multer({ storage: storage });
@@ -18,7 +18,7 @@ router.post("/", upload.single("image"), (req, res) => {
     Slider.create({
         title: req.body.title,
         image_src: req.file.path,
-        tour_url: req.body.postContent,
+        tour_url: req.body.url,
     })
         .then(() => {
             res.json("done");
