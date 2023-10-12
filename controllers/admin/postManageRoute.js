@@ -47,7 +47,7 @@ router.get("/:publish/:order/:page", (req, res) => {
     });
 });
 router.delete("/:id", (req, res) => {
-  post
+  Post
     .destroy({ where: { id: req.params.id } })
     .then((result) => {
       console.log(result);

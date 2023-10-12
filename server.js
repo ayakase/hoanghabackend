@@ -22,6 +22,7 @@ const adminLibraryRoute = require("./controllers/admin/libraryManageRoute");
 const adminPostRoute = require("./controllers/admin/postManageRoute");
 const adminSlideRoute = require("./controllers/admin/sliderManageRoute");
 const adminCountRoute = require("./controllers/admin/countManageRoute");
+const adminEachOrderRoute = require("./controllers/admin/eachOrderRoute");
 const req = require("express/lib/request");
 require("dotenv").config();
 app.use(
@@ -54,6 +55,7 @@ app.use("/admin/library", adminLibraryRoute);
 app.use("/admin/post", adminPostRoute);
 app.use("/admin/slider", adminSlideRoute);
 app.use("/admin/count", adminCountRoute);
+app.use("/admin/each-order", adminEachOrderRoute);
 app.timeout = 60000;
 app.listen(PORT, () => {
   console.log(

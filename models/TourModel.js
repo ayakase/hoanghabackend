@@ -1,6 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
-const Category = require('./CategoryModel');
+const Location = require('./LocationModel');
 const Tour = sequelize.define('Tour', {
     id: {
         type: DataTypes.INTEGER,
@@ -14,7 +14,8 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.STRING(255),
     },
     slug: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING(255),
+        unique: true,
     },
     images: {
         type: DataTypes.TEXT
@@ -25,7 +26,7 @@ const Tour = sequelize.define('Tour', {
     schedule: {
         type: DataTypes.STRING(255),
     },
-    category_id: {
+    location_id: {
         type: DataTypes.INTEGER,
     },
     tourtype: {
@@ -57,7 +58,7 @@ const Tour = sequelize.define('Tour', {
     child_price: {
         type: DataTypes.INTEGER(255),
     },
-    infant_price:{
+    infant_price: {
         type: DataTypes.INTEGER(255)
     },
     special: {
@@ -83,6 +84,6 @@ const Tour = sequelize.define('Tour', {
         defaultValue: 0,
     }
 })
-Category.hasMany(Tour, { foreignKey: 'category_id' });
-Tour.belongsTo(Category, { foreignKey: 'category_id' });
+Location.hasMany(Tour, { foreignKey: 'location_id' });
+Tour.belongsTo(Location, { foreignKey: 'location_id' });
 module.exports = Tour;

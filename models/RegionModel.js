@@ -1,7 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
-
-
+const Category = require('./CategoryModel');
 const Region = sequelize.define('Region', {
     id: {
         type: DataTypes.INTEGER,
@@ -12,8 +11,14 @@ const Region = sequelize.define('Region', {
     },
     note: {
         type: DataTypes.STRING(255)
-    }
-
+    },
+    slug: {
+        type: DataTypes.STRING(255)
+    },
+    category_id: {
+        type: DataTypes.INTEGER,
+    },
 })
-
+Category.hasMany(Region, { foreignKey: 'category_id' });
+Region.belongsTo(Category, { foreignKey: 'category_id' });
 module.exports = Region;

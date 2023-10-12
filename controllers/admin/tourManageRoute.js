@@ -48,7 +48,7 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
         .then(() => {
             res.json("done");
         }).catch((err) => {
-            console.error(err)
+            console.log(err);
         })
 
 })
@@ -65,14 +65,15 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
 router.get('/:category/:order/:page', (req, res) => {
     const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
     Tour.findAndCountAll({
-        where: whereCondition,
-        include: {
-            model: Category,
-        },
-        order: [["createdAt", req.params.order]],
+        // where: whereCondition,
+        // include: {
+        //     model: Category,
+        // },
+        // order: [["createdAt", req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10
     }).then((result) => {
+        console.log(result.rows)
         const { count, rows } = result;
         res.send(result)
     }).catch((error) => {
