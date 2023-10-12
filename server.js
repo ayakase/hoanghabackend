@@ -5,7 +5,7 @@ const PORT = 3000; // You can change the port number if needed
 const cors = require("cors");
 //client
 const clientAdvisoryRoute = require("./controllers/client/advisoryRoute");
-const clientTourRoute = require("./controllers/client/tourRoute");
+const clientCategoryRoute = require("./controllers/client/categoryRoute");
 const clientHotTourRoute = require("./controllers/client/hotTourRoute");
 const clientEachTourRoute = require("./controllers/client/eachTourRoute");
 const clientEachPostRoute = require("./controllers/client/eachPostRoute");
@@ -23,6 +23,7 @@ const adminPostRoute = require("./controllers/admin/postManageRoute");
 const adminSlideRoute = require("./controllers/admin/sliderManageRoute");
 const adminCountRoute = require("./controllers/admin/countManageRoute");
 const adminEachOrderRoute = require("./controllers/admin/eachOrderRoute");
+const adminRegionRoute = require("./controllers/admin/regionManageRoute");
 const req = require("express/lib/request");
 require("dotenv").config();
 app.use(
@@ -37,7 +38,7 @@ app.get("/connect", (req, res) => {
 });
 //client
 app.use("/client/advisory", clientAdvisoryRoute);
-app.use("/client/tour", clientTourRoute);
+app.use("/client/category", clientCategoryRoute);
 app.use("/client/hottour", clientHotTourRoute);
 app.use("/client/order", clientOrderRoute);
 app.use("/client/each-tour", clientEachTourRoute);
@@ -56,6 +57,9 @@ app.use("/admin/post", adminPostRoute);
 app.use("/admin/slider", adminSlideRoute);
 app.use("/admin/count", adminCountRoute);
 app.use("/admin/each-order", adminEachOrderRoute);
+app.use("/admin/region", adminRegionRoute);
+
+
 app.timeout = 60000;
 app.listen(PORT, () => {
   console.log(
