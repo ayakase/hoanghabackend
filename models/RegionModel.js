@@ -5,6 +5,7 @@ const Region = sequelize.define('Region', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     },
     name: {
         type: DataTypes.STRING(225),
@@ -13,7 +14,8 @@ const Region = sequelize.define('Region', {
         type: DataTypes.STRING(255)
     },
     slug: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING(255),
+        unique: true
     },
     category_id: {
         type: DataTypes.INTEGER,
