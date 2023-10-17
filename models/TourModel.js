@@ -82,6 +82,10 @@ const Tour = sequelize.define('Tour', {
     order_count: {
         type: DataTypes.INTEGER(255),
         defaultValue: 0,
+    },
+    published: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
     }
 })
 Location.hasMany(Tour, { foreignKey: 'location_id' });

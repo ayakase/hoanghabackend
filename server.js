@@ -24,6 +24,8 @@ const adminSlideRoute = require("./controllers/admin/sliderManageRoute");
 const adminCountRoute = require("./controllers/admin/countManageRoute");
 const adminEachOrderRoute = require("./controllers/admin/eachOrderRoute");
 const adminRegionRoute = require("./controllers/admin/regionManageRoute");
+const adminLocationRoute = require("./controllers/admin/locationManageRoute");
+
 const req = require("express/lib/request");
 require("dotenv").config();
 app.use(
@@ -58,6 +60,7 @@ app.use("/admin/slider", adminSlideRoute);
 app.use("/admin/count", adminCountRoute);
 app.use("/admin/each-order", adminEachOrderRoute);
 app.use("/admin/region", adminRegionRoute);
+app.use("/admin/location", adminLocationRoute);
 
 
 app.timeout = 60000;
