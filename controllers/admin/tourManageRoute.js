@@ -14,7 +14,9 @@ const storage = new CloudinaryStorage({
 });
 const upload = multer({ storage: storage });
 const Tour = require('../../models/TourModel')
-const Category = require('../../models/CategoryModel')
+const Category = require('../../models/CategoryModel');
+const Region = require('../../models/RegionModel');
+const Location = require('../../models/LocationModel');
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
     console.log(req.file.path);
     let slug = slugify(req.body.slug, {
@@ -61,7 +63,19 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
 //         cb(null, file.originalname);
 //     },
 // });
-
+router.get('/choose-category', (req, res) => {
+    Category.findAll({
+        include: {
+            model: Region,
+            include: {
+                model: Location
+            }
+        }
+    }).then((result) => {
+        console.log(result)
+        res.send(result)
+    })
+})
 router.get('/:category/:order/:page', (req, res) => {
     const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
     Tour.findAndCountAll({

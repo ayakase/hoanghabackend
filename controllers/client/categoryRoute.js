@@ -8,29 +8,49 @@ router.get('/:category/:orderby/:order/:page', (req, res) => {
     Tour.findAndCountAll({
         include: {
             model: Location,
+            required: true,
             include: {
                 model: Region,
+                required: true,
                 include: {
                     model: Category,
                     where: {
-                        id: req.params.category
-                    }
+                        id: req.params.category,
+                    },
+                    required: true
                 }
             }
         },
-        order: [[req.params.orderby, req.params.order]],
-        limit: 10,
-        offset: (req.params.page - 1) * 10
+        // order: [[req.params.orderby, req.params.order]],
+        limit: 2,
+        // separate: true,
+        offset: (req.params.page - 1) * 2
     }).then((result) => {
+        console.log(result.query)
         const { count, rows } = result;
         res.send(result)
+
+        // const { count, rows } = result;
+
+        // if (count > 0) {
+        //     const tours = rows.flatMap((category) =>
+        //         category.Regions.flatMap((region) =>
+        //             region.Locations.flatMap((location) => location.Tours)
+        //         )
+        //     );
+
+        //     console.log('Total Tours:', count);
+        //     console.log('Tours (Page 1):', tours);
+        //     res.send(tours);
+        // } else {
+        //     console.log('Category not found');
+        // }
     })
         .catch((error) => {
             console.error(error);
         })
 })
 router.get('/side-bar-list/:category', (req, res) => {
-    console.log(req.params.category)
     Category.findOne({
         where: {
             id: req.params.category
