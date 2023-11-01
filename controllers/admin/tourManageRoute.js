@@ -18,18 +18,20 @@ const Category = require('../../models/CategoryModel');
 const Region = require('../../models/RegionModel');
 const Location = require('../../models/LocationModel');
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
-    console.log(req.file.path);
+    console.log(
+        req.body.tourLocation)
     let slug = slugify(req.body.slug, {
         locale: 'vi',
         lower: true,
     })
+
     Tour.create({
         title: req.body.tourTitle,
         thumbnail: req.file.path,
         slug: slug,
         tik_tok_id: req.body.tiktokId,
         schedule: req.body.tourSchedule,
-        category_id: req.body.tourCategory,
+        location_id: req.body.tourLocation,
         tourtype: req.body.tourType,
         departure: req.body.tourFrom,
         days: req.body.tourLength,
@@ -48,13 +50,15 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
         guide: req.body.tourGuide,
     })
         .then(() => {
-            res.json("done");
-        }).catch((err) => {
-            console.log(err);
+            res.send("1");
+        })
+        .catch((err) => {
+            if (err.original && err.original.errno === 1062) {
+                res.send("2")
+            }
         })
 
-})
-    ;
+});
 // const storage1 = multer.diskStorage({
 //     destination: function (req, file, cb) {
 //         cb(null, 'thumbnails/');
@@ -83,7 +87,7 @@ router.get('/:category/:order/:page', (req, res) => {
         // include: {
         //     model: Category,
         // },
-        // order: [["createdAt", req.params.order]],
+        order: [["createdAt", req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10
     }).then((result) => {

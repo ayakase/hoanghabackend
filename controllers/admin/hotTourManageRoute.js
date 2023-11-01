@@ -12,9 +12,9 @@ router.get('/:category/:order/:page', (req, res) => {
     }
     Tour.findAndCountAll({
         where: whereCondition,
-        include: {
-            model: Category,
-        },
+        // include: {
+        //     model: Category,
+        // },
         order: [["createdAt", req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10

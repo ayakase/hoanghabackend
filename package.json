@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "sync": "node ./sync/syncAll.js"
+    "sync": "echo 'Bạn có muốn sync không ? khi sync sẽ mất hết dữ liệu database (y/n)' && read -r answer && if [ \"$answer\" = 'y' ]; then npm run perform; else echo 'Aborted'; fi",
+    "perform": "node ./sync/syncAll.js"
   },
   "author": "",
   "license": "ISC",

@@ -3,6 +3,15 @@ const express = require("express");
 const app = express();
 const PORT = 3000; // You can change the port number if needed
 const cors = require("cors");
+const path = require('path');
+
+app.get('/images/:imageFileName', (req, res) => {
+  const imageFileName = req.params.imageFileName;
+  const imagePath = path.join(__dirname, 'uploads', imageFileName); // Adjust the path as needed
+
+  // Serve the image using Express
+  res.sendFile(imagePath);
+});
 //client
 const clientAdvisoryRoute = require("./controllers/client/advisoryRoute");
 const clientCategoryRoute = require("./controllers/client/categoryRoute");

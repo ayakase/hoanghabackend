@@ -21,12 +21,11 @@ router.get('/:category/:orderby/:order/:page', (req, res) => {
                 }
             }
         },
-        // order: [[req.params.orderby, req.params.order]],
-        limit: 2,
+        order: [[req.params.orderby, req.params.order]],
+        limit: 10,
         // separate: true,
-        offset: (req.params.page - 1) * 2
+        offset: (req.params.page - 1) * 10
     }).then((result) => {
-        console.log(result.query)
         const { count, rows } = result;
         res.send(result)
 
@@ -70,18 +69,33 @@ router.get('/side-bar-list/:category', (req, res) => {
     })
 })
 router.get('/hot-sidebar/:category', (req, res) => {
-    // Tour.findAndCountAll({
-    //     where: {
-    //         category_id: req.params.category,
-    //         ishottour: 1
-    //     },
-    //     order: [['createdAt', 'DESC']],
-    //     limit: 6,
-    // }).then((result) => {
-    //     const { count, rows } = result;
-    //     res.send(result)
-    // }).catch((error) => {
-    //     console.error(error);
-    // })
+
+    Tour.findAndCountAll({
+        include: {
+            model: Location,
+            required: true,
+            include: {
+                model: Region,
+                required: true,
+                include: {
+                    model: Category,
+                    where: {
+                        id: req.params.category,
+                    },
+                    required: true
+                }
+            }
+        },
+        where: {
+            ishottour: 1
+        },
+        order: [['createdAt', 'DESC']],
+        limit: 6,
+    }).then((result) => {
+        const { count, rows } = result;
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
 })
 module.exports = router;
