@@ -4,11 +4,21 @@ const Tour = require('../../models/TourModel')
 const Category = require('../../models/CategoryModel');
 const Region = require('../../models/RegionModel');
 const Location = require('../../models/LocationModel');
-router.get('/:category/:orderby/:order/:page', (req, res) => {
+const { Op } = require('sequelize');
+router.get('/:keyword/:orderby/:order/:page', (req, res) => {
+    console.log(req.params)
+    if (req.params.keyword !== undefined) {
+        keyword = req.params.keyword
+    } else {
+        keyword = ' '
+    }
+    console.log(keyword)
     Tour.findAndCountAll({
-        where :{
-            
-        }
+        where: {
+            title: {
+                [Op.like]: `%${req.params.keyword}%`,
+            },
+        },
         order: [[req.params.orderby, req.params.order]],
         limit: 10,
         // separate: true,
@@ -36,7 +46,6 @@ router.get('/side-bar-list/:category', (req, res) => {
             }
         }
     }).then((results) => {
-        console.log(results)
         res.send(results)
     })
 })
