@@ -6,8 +6,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
+const Location = require('../../models/LocationModel')
 const Region = require('../../models/RegionModel')
-const Category = require('../../models/CategoryModel')
 router.post('/', upload.none(), (req, res) => {
     console.log(req.body);
     if (!req.body.name || !req.body.slug || !req.body.note) {
@@ -33,12 +33,12 @@ router.post('/', upload.none(), (req, res) => {
         });
     }
 });
-router.get('/:category', (req, res) => {
-    const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
-    Region.findAll({
-        where: whereCondition,
+router.get('/locationlist/:category', (req, res) => {
+    // const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
+    Location.findAll({
+        // where: whereCondition,
         include: {
-            model: Category,
+            model: Region,
         },
         order: [["id", "ASC"]],
 
@@ -47,6 +47,18 @@ router.get('/:category', (req, res) => {
     }).catch((error) => {
         console.error(error);
     })
+})
+router.get('/region', (req, res) => {
+const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
+Region.findAll({
+    // where: whereCondition,
+    order: [["id", "ASC"]],
+}).then((result) => {
+    console.log(result)
+    res.send(result)
+}).catch((error) => {
+    console.error(error);
+})
 })
 router.delete('/:id', (req, res) => {
     Region.destroy({ where: { id: req.params.id } })
