@@ -10,15 +10,5 @@ router.get("/", (req, res) => {
         res.send(result);
     });
 });
-// router.delete("/:id", (req, res) => {
-//     post
-//         .destroy({ where: { id: req.params.id } })
-//         .then((result) => {
-//             console.log(result);
-//             res.send("done");
-//         })
-//         .catch((error) => {
-//             console.error(error);
-//         });
-// });
+
 module.exports = router;

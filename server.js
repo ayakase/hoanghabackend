@@ -21,8 +21,8 @@ const clientEachPostRoute = require("./controllers/client/eachPostRoute");
 const clientOrderRoute = require("./controllers/client/orderRoute");
 const clientCarouselRoute = require("./controllers/client/carouselRoute")
 const clientSlideRoute = require("./controllers/client/slideRoute")
-const clientCountRoute = require("./controllers/client/countRoute")
 const clientSearchRoute = require("./controllers/client/searchRoute")
+const clientInitialRoute = require("./controllers/client/initialRoute")
 
 //admin
 const adminTourRoute = require("./controllers/admin/tourManageRoute");
@@ -46,9 +46,7 @@ app.use(
 );
 console.log(process.env.FE_URL);
 app.set("trust proxy", true);
-app.get("/connect", (req, res) => {
-  res.send("Connected to Backend");
-});
+
 //client
 app.use("/client/advisory", clientAdvisoryRoute);
 app.use("/client/category", clientCategoryRoute);
@@ -58,9 +56,8 @@ app.use("/client/each-tour", clientEachTourRoute);
 app.use("/client/each-post", clientEachPostRoute);
 app.use("/client/carousel", clientCarouselRoute)
 app.use("/client/slide", clientSlideRoute)
-app.use("/client/count", clientCountRoute)
 app.use("/client/search", clientSearchRoute)
-
+app.use("/client/initial", clientInitialRoute)
 //admin
 app.use("/admin/tour", adminTourRoute);
 app.use("/admin/hottour", adminHotTourRoute);
