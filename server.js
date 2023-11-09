@@ -15,6 +15,8 @@ app.get('/images/:imageFileName', (req, res) => {
 //client
 const clientAdvisoryRoute = require("./controllers/client/advisoryRoute");
 const clientCategoryRoute = require("./controllers/client/categoryRoute");
+const clientRegionRoute = require("./controllers/client/regionRoute");
+const clientLocationRoute = require("./controllers/client/locationRoute");
 const clientHotTourRoute = require("./controllers/client/hotTourRoute");
 const clientEachTourRoute = require("./controllers/client/eachTourRoute");
 const clientEachPostRoute = require("./controllers/client/eachPostRoute");
@@ -58,6 +60,8 @@ app.use("/client/carousel", clientCarouselRoute)
 app.use("/client/slide", clientSlideRoute)
 app.use("/client/search", clientSearchRoute)
 app.use("/client/initial", clientInitialRoute)
+app.use("/client/region", clientRegionRoute)
+app.use("/client/location", clientLocationRoute)
 //admin
 app.use("/admin/tour", adminTourRoute);
 app.use("/admin/hottour", adminHotTourRoute);

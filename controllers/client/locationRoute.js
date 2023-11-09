@@ -53,7 +53,6 @@ router.get('/side-bar-list/:category', (req, res) => {
     })
 })
 router.get('/hot-sidebar/:category', (req, res) => {
-
     Tour.findAndCountAll({
         include: {
             model: Location,
