@@ -4,22 +4,14 @@ const Tour = require('../../models/TourModel')
 const Category = require('../../models/CategoryModel');
 const Region = require('../../models/RegionModel');
 const Location = require('../../models/LocationModel');
-router.get('/:category/:orderby/:order/:page', (req, res) => {
+router.get('/:location/:orderby/:order/:page', (req, res) => {
     Tour.findAndCountAll({
         include: {
             model: Location,
             required: true,
-            include: {
-                model: Region,
-                required: true,
-                include: {
-                    model: Category,
-                    where: {
-                        id: req.params.category,
-                    },
-                    required: true
-                }
-            }
+            where: {
+                slug: req.params.location,
+            },
         },
         order: [[req.params.orderby, req.params.order]],
         limit: 10,
@@ -33,18 +25,15 @@ router.get('/:category/:orderby/:order/:page', (req, res) => {
             console.error(error);
         })
 })
-router.get('/side-bar-list/:category', (req, res) => {
-    Category.findOne({
+router.get('/side-bar-list/:region', (req, res) => {
+    Region.findOne({
         where: {
-            id: req.params.category
+            slug: req.params.region
         },
         include: {
-            model: Region,
+            model: Location,
             include: {
-                model: Location,
-                include: {
-                    model: Tour
-                }
+                model: Tour
             }
         }
     }).then((results) => {

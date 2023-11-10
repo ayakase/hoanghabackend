@@ -8,6 +8,9 @@ const Post = require('../models/PostModel')
 const sequelize = require('../connect');
 const Slider = require('../models/SliderModel');
 const Count = require('../models/CountModel');
+const PlaneTicket = require('../models/PlaneTicketModel');
+const CarBook = require('../models/CarBookModel');
+
 async function syncModelsSequentially() {
     try {
         // Sync Category model
@@ -301,7 +304,7 @@ async function syncModelsSequentially() {
                 name: "Du lịch Nhật Bản",
                 note: "none",
                 region_id: 4,
-                slug:  "du-lich-nhat-ban"
+                slug: "du-lich-nhat-ban"
             },
             {
                 id: 32,
@@ -329,7 +332,7 @@ async function syncModelsSequentially() {
                 name: "Du lịch Tây Âu",
                 note: "none",
                 region_id: 5,
-                slug:  "du-lich-tay-au"
+                slug: "du-lich-tay-au"
             },
             {
                 id: 36,
@@ -379,7 +382,7 @@ async function syncModelsSequentially() {
                 note: "none",
                 region_id: 7,
                 slug: "du-lich-new-zealand"
-            }   
+            }
         ]
         )
         await Tour.sync({ force: true });
@@ -389,7 +392,10 @@ async function syncModelsSequentially() {
         await Count.create({
             id: 1,
             count: 0
-        });
+        },
+        )
+
+            ;
 
 
         await Order.sync({ force: true });
