@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../../models/OrderModel');
+const Notification = require('../../models/NotificationModel')
 const Tour = require('../../models/TourModel')
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -27,5 +28,9 @@ router.post('/', upload.none(), (req, res) => {
         }).catch((err) => {
             console.error(err)
         })
+    Notification.create({
+        action: `Khach hang ${req.body.name} da dat Tour ${req.body.tourTitle}`
+    })
+
 });
 module.exports = router;

@@ -42,6 +42,10 @@ const Tour = sequelize.define('Tour', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
+    isdiscount: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
     recommend: {
         type: DataTypes.INTEGER,
         defaultValue: 0,

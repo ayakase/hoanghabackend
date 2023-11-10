@@ -12,6 +12,7 @@ const clientRegionRoute = require("./controllers/client/regionRoute");
 const clientLocationRoute = require("./controllers/client/locationRoute");
 const clientHotTourRoute = require("./controllers/client/hotTourRoute");
 const clientEachTourRoute = require("./controllers/client/eachTourRoute");
+const clientDiscountRoute = require("./controllers/client/discountRoute");
 const clientEachPostRoute = require("./controllers/client/eachPostRoute");
 const clientOrderRoute = require("./controllers/client/orderRoute");
 const clientCarouselRoute = require("./controllers/client/carouselRoute")
@@ -31,7 +32,7 @@ const adminCountRoute = require("./controllers/admin/countManageRoute");
 const adminEachOrderRoute = require("./controllers/admin/eachOrderRoute");
 const adminRegionRoute = require("./controllers/admin/regionManageRoute");
 const adminLocationRoute = require("./controllers/admin/locationManageRoute");
-
+const adminNotificationRoute = require("./controllers/admin/notificationManageRoute");
 const req = require("express/lib/request");
 require("dotenv").config();
 app.use(
@@ -55,6 +56,7 @@ app.use("/client/search", clientSearchRoute)
 app.use("/client/initial", clientInitialRoute)
 app.use("/client/region", clientRegionRoute)
 app.use("/client/location", clientLocationRoute)
+app.use("/client/discount", clientDiscountRoute)
 //admin
 app.use("/admin/tour", adminTourRoute);
 app.use("/admin/hottour", adminHotTourRoute);
@@ -67,7 +69,7 @@ app.use("/admin/count", adminCountRoute);
 app.use("/admin/each-order", adminEachOrderRoute);
 app.use("/admin/region", adminRegionRoute);
 app.use("/admin/location", adminLocationRoute);
-
+app.use("/admin/notification", adminNotificationRoute);
 
 app.timeout = 60000;
 app.listen(PORT, () => {

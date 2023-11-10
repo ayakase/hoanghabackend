@@ -10,7 +10,7 @@ const Slider = require('../models/SliderModel');
 const Count = require('../models/CountModel');
 const PlaneTicket = require('../models/PlaneTicketModel');
 const CarBook = require('../models/CarBookModel');
-
+const Notification = require('../models/NotificationModel')
 async function syncModelsSequentially() {
     try {
         // Sync Category model
@@ -397,7 +397,7 @@ async function syncModelsSequentially() {
         console.log('Car table created');
         await PlaneTicket.sync({ force: true })
         console.log('Ticket Created')
-        
+
         await Order.sync({ force: true });
         console.log('Order table created');
 
@@ -409,6 +409,9 @@ async function syncModelsSequentially() {
 
         await Slider.sync({ force: true });
         console.log('Slider table created');
+
+        await Notification.sync({ force: true });
+        console.log('Notification table created');
     } catch (error) {
         console.error('Error creating tables:', error);
     }
