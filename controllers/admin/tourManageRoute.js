@@ -84,9 +84,9 @@ router.get('/:category/:order/:page', (req, res) => {
     const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
     Tour.findAndCountAll({
         // where: whereCondition,
-        // include: {
-        //     model: Category,
-        // },
+        include: {
+            model: Location,
+        },
         order: [["createdAt", req.params.order]],
         limit: 10,
         offset: (req.params.page - 1) * 10

@@ -392,12 +392,12 @@ async function syncModelsSequentially() {
         await Count.create({
             id: 1,
             count: 0
-        },
-        )
-
-            ;
-
-
+        },);
+        await CarBook.sync({ force: true })
+        console.log('Car table created');
+        await PlaneTicket.sync({ force: true })
+        console.log('Ticket Created')
+        
         await Order.sync({ force: true });
         console.log('Order table created');
 
