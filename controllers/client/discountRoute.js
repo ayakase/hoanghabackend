@@ -1,51 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Tour = require('../../models/TourModel')
-const Region = require('../../models/RegionModel');
-const Location = require('../../models/LocationModel');
-router.get('/:category/:orderby/:order/:page', (req, res) => {
+const Category = require('../../models/CategoryModel')
+const Location = require('../../models/LocationModel')
+const Region = require('../../models/RegionModel')
+router.get('/:orderby/:order/:page', (req, res) => {
+    // console.log(req.params.category);
     Tour.findAndCountAll({
-        include: {
-            model: Location,
-            required: true,
-        },
-        where: {
-            isdiscount: 1
-        },
-        order: [[req.params.orderby, req.params.order]],
-        limit: 10,
-        // separate: true,
-        offset: (req.params.page - 1) * 10
-    }).then((result) => {
-        const { count, rows } = result;
-        res.send(result)
-    })
-        .catch((error) => {
-            console.error(error);
-        })
-})
-router.get('/side-bar-list/:category', (req, res) => {
-    Category.findOne({
-        where: {
-            id: req.params.category
-        },
-        include: {
-            model: Region,
-            include: {
-                model: Location,
-                include: {
-                    model: Tour
-                }
-            }
-        }
-    }).then((results) => {
-        console.log(results)
-        res.send(results)
-    })
-})
-router.get('/hot-sidebar/:category', (req, res) => {
-
-    Tour.findAndCountAll({
+        where: { isdiscount: 1 },
         include: {
             model: Location,
             required: true,
@@ -54,18 +16,13 @@ router.get('/hot-sidebar/:category', (req, res) => {
                 required: true,
                 include: {
                     model: Category,
-                    where: {
-                        id: req.params.category,
-                    },
                     required: true
                 }
             }
         },
-        where: {
-            ishottour: 1
-        },
-        order: [['createdAt', 'DESC']],
-        limit: 6,
+        order: [[req.params.orderby, req.params.order]],
+        limit: 10,
+        offset: (req.params.page - 1) * 10
     }).then((result) => {
         const { count, rows } = result;
         res.send(result)
@@ -73,4 +30,5 @@ router.get('/hot-sidebar/:category', (req, res) => {
         console.error(error);
     })
 })
+
 module.exports = router;

@@ -9,36 +9,35 @@ router.use(express.urlencoded({ extended: true }));
 const Location = require('../../models/LocationModel')
 const Region = require('../../models/RegionModel')
 router.post('/', upload.none(), (req, res) => {
-    console.log(req.body);
-    if (!req.body.name || !req.body.slug || !req.body.note) {
+    if (!req.body.name || !req.body.slug) {
         res.send("Chua dien day du thong tin");
     } else {
         let slug = slugify(req.body.slug, {
             locale: 'vi',
             lower: true,
         })
-        console.log(slug);
-        Region.create({
+        Location.create({
             name: req.body.name,
             slug: slug,
             note: req.body.note,
-            category_id: req.body.category_id,
+            region_id: req.body.region_id,
         }).then((response) => {
             res.send("Da them")
         }).catch((err) => {
-            console.log(err.original.errno);
+            console.log(err);
             if (err.original.errno === 1062) {
                 res.send("Trung slug")
             }
         });
     }
 });
-router.get('/locationlist/:category', (req, res) => {
-    // const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
+router.get('/locationlist', (req, res) => {
+    console.log(req.query.region);
+    const whereCondition = req.query.region !== '' ? { slug: req.query.region } : {};
     Location.findAll({
-        // where: whereCondition,
         include: {
             model: Region,
+            where: whereCondition,
         },
         order: [["id", "ASC"]],
 
@@ -49,21 +48,19 @@ router.get('/locationlist/:category', (req, res) => {
     })
 })
 router.get('/region', (req, res) => {
-const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
-Region.findAll({
-    // where: whereCondition,
-    order: [["id", "ASC"]],
-}).then((result) => {
-    console.log(result)
-    res.send(result)
-}).catch((error) => {
-    console.error(error);
-})
+    const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
+    Region.findAll({
+        // where: whereCondition,
+        order: [["id", "ASC"]],
+    }).then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
 })
 router.delete('/:id', (req, res) => {
-    Region.destroy({ where: { id: req.params.id } })
+    Location.destroy({ where: { id: req.params.id } })
         .then((result) => {
-            console.log(result)
             res.send("done")
         }).catch((error) => {
             console.error(error);
