@@ -25,12 +25,13 @@ router.post('/', upload.none(), (req, res) => {
         .then(() => {
             res.json("done");
             Tour.increment('order_count', { by: 1, where: { id: req.body.tourId } })
+            Notification.create({
+                action: `Khách hàng <span style="color: rgb(255, 98, 0);font-weight: bold;">${req.body.name} </span> đã đặt tour  <span style="color: rgb(255, 98, 0);font-weight: bold;">${req.body.tourTitle} </span>`
+            })
+
         }).catch((err) => {
             console.error(err)
         })
-    Notification.create({
-        action: `Khach hang ${req.body.name} da dat Tour ${req.body.tourTitle}`
-    })
 
 });
 module.exports = router;

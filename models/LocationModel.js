@@ -16,7 +16,8 @@ const Location = sequelize.define('Location', {
         type: DataTypes.STRING(255)
     },
     slug: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING(255),
+        unique: true
     },
     region_id: {
         type: DataTypes.INTEGER,

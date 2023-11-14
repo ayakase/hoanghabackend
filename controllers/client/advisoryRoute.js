@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Advisory = require('../../models/AdvisoryModel');
+const Notification = require('../../models/NotificationModel');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -17,6 +18,17 @@ router.post('/', upload.none(), (req, res) => {
     })
         .then(() => {
             res.json("done");
+            let actionMessage = `Khách hàng <span style="color: rgb(255, 98, 0);font-weight: bold;">${req.body.name} </span> đã yêu cầu tư vấn`;
+
+            if (req.body.tour_title) {
+                actionMessage += ` tour <span style="color: rgb(255, 98, 0);font-weight: bold;">${req.body.tour_title} </span>`;
+            }
+
+            Notification.create({
+                action: actionMessage
+            });
+
+
         }).catch((err) => {
             console.error(err)
         })
