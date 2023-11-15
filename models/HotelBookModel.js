@@ -1,7 +1,7 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
 
-const PlaneTicket = sequelize.define('PlaneTicket', {
+const HotelBook = sequelize.define('HotelBook', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -16,17 +16,11 @@ const PlaneTicket = sequelize.define('PlaneTicket', {
     email: {
         type: DataTypes.STRING,
     },
-    departure_location: {
-        type: DataTypes.STRING(255)
-    },
-    arrival_location: {
-        type: DataTypes.STRING(255),
-    },
-    departure_date: {
+    booking_date: {
         type: DataTypes.DATE
     },
-    arrival_date: {
-        type: DataTypes.DATE
+    booking_days: {
+        type: DataTypes.INTEGER(255)
     },
     adult: {
         type: DataTypes.INTEGER(255)
@@ -39,11 +33,7 @@ const PlaneTicket = sequelize.define('PlaneTicket', {
     },
     note: {
         type: DataTypes.STRING(255)
-    },
-    solved: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
     }
 })
 
-module.exports = PlaneTicket;
+module.exports = HotelBook;

@@ -87,7 +87,7 @@ async function syncModelsSequentially() {
             }
         ])
         await Location.sync({ force: true });
-        console.log('Location table updated');
+        console.log('Location table crated');
         await Location.bulkCreate([
             {
                 id: 1,
@@ -220,14 +220,14 @@ async function syncModelsSequentially() {
                 name: "Du lịch Đà Lạt",
                 note: "none",
                 region_id: 3,
-                slug: "du-lich-cat-ba"
+                slug: "du-lich-da-lat"
             },
             {
                 id: 20,
                 name: "Du lịch Côn Đảo",
                 note: "none",
                 region_id: 3,
-                slug: "du-lich-da-lat"
+                slug: "du-lich-con-dao"
             },
             {
                 id: 21,

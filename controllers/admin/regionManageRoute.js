@@ -24,11 +24,11 @@ router.post('/', upload.none(), (req, res) => {
             note: req.body.note,
             category_id: req.body.category_id,
         }).then((response) => {
-            res.send("Da them")
+            res.send("Đã thêm khu vực")
         }).catch((err) => {
             console.log(err.original.errno);
             if (err.original.errno === 1062) {
-                res.send("Trung slug")
+                res.send("Slug bị trùng, vui lòng đổi")
             }
         });
     }

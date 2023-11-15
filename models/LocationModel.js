@@ -1,8 +1,6 @@
 const sequelize = require('../connect');
 const { DataTypes } = require('sequelize');
 const Region = require('./RegionModel');
-
-
 const Location = sequelize.define('Location', {
     id: {
         type: DataTypes.INTEGER,

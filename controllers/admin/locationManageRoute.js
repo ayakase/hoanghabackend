@@ -22,11 +22,11 @@ router.post('/', upload.none(), (req, res) => {
             note: req.body.note,
             region_id: req.body.region_id,
         }).then((response) => {
-            res.send("Da them")
+            res.send("Đã thêm địa điểm")
         }).catch((err) => {
             console.log(err);
             if (err.original.errno === 1062) {
-                res.send("Trung slug")
+                res.send("Slug bị trùng, vui lòng đổi")
             }
         });
     }
