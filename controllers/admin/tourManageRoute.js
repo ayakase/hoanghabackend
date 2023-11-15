@@ -28,6 +28,7 @@ router.post('/', upload.single('tourThumbnail'), (req, res) => {
     Tour.create({
         title: req.body.tourTitle,
         thumbnail: req.file.path,
+        images: req.body.images,
         slug: slug,
         tik_tok_id: req.body.tiktokId,
         schedule: req.body.tourSchedule,
