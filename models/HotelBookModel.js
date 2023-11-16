@@ -33,6 +33,10 @@ const HotelBook = sequelize.define('HotelBook', {
     },
     note: {
         type: DataTypes.STRING(255)
+    },
+    solved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 })
 

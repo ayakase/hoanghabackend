@@ -50,7 +50,6 @@ router.delete("/:id", (req, res) => {
   Post
     .destroy({ where: { id: req.params.id } })
     .then((result) => {
-      console.log(result);
       res.send("done");
     })
     .catch((error) => {

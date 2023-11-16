@@ -10,6 +10,9 @@ const Slider = require('../models/SliderModel');
 const Count = require('../models/CountModel');
 const PlaneTicket = require('../models/PlaneTicketModel');
 const CarBook = require('../models/CarBookModel');
+const HotelBook = require('../models/HotelBookModel');
+const Passport = require('../models/PassportModel');
+const CableCar = require('../models/CableCarModel');
 const Notification = require('../models/NotificationModel')
 async function syncModelsSequentially() {
     try {
@@ -31,7 +34,7 @@ async function syncModelsSequentially() {
                 note: "none",
                 slug: "du-lich-quoc-te"
             }]),
-            console.log('Input categories');
+            console.log('Added categories');
 
         await Region.sync({ force: true });
         console.log('Region table created');
@@ -86,6 +89,7 @@ async function syncModelsSequentially() {
                 slug: "du-lich-chau-uc"
             }
         ])
+        console.log("Added regions")
         await Location.sync({ force: true });
         console.log('Location table crated');
         await Location.bulkCreate([
@@ -385,6 +389,7 @@ async function syncModelsSequentially() {
             }
         ]
         )
+        console.log("Added location")
         await Tour.sync({ force: true });
         console.log('Tour table created');
         await Count.sync({ force: true })
@@ -397,10 +402,14 @@ async function syncModelsSequentially() {
         console.log('Car table created');
         await PlaneTicket.sync({ force: true })
         console.log('Ticket Created')
-
+        await CableCar.sync({ force: true })
+        console.log('Cable Cartable created');
+        await Passport.sync({ force: true })
+        console.log('Passport table created');
+        await HotelBook.sync({ force: true })
+        console.log('Hotel Book table created');
         await Order.sync({ force: true });
         console.log('Order table created');
-
         await Advisory.sync({ force: true });
         console.log('Advisory table created');
 

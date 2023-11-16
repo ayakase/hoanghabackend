@@ -24,7 +24,7 @@ router.post('/', upload.none(), (req, res) => {
         }).then((response) => {
             res.send("Đã thêm địa điểm")
         }).catch((err) => {
-            console.log(err);
+            (err);
             if (err.original.errno === 1062) {
                 res.send("Slug bị trùng, vui lòng đổi")
             }
@@ -32,7 +32,7 @@ router.post('/', upload.none(), (req, res) => {
     }
 });
 router.get('/locationlist', (req, res) => {
-    console.log(req.query.region);
+    (req.query.region);
     const whereCondition = req.query.region !== '' ? { slug: req.query.region } : {};
     Location.findAll({
         include: {

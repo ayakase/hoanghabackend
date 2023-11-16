@@ -40,7 +40,6 @@ app.use(
     origin: process.env.FE_URL,
   })
 );
-console.log(process.env.FE_URL);
 app.set("trust proxy", true);
 
 //client

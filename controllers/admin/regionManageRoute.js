@@ -9,7 +9,6 @@ router.use(express.urlencoded({ extended: true }));
 const Region = require('../../models/RegionModel')
 const Category = require('../../models/CategoryModel')
 router.post('/', upload.none(), (req, res) => {
-    console.log(req.body);
     if (!req.body.name || !req.body.slug || !req.body.note) {
         res.send("Chua dien day du thong tin");
     } else {
@@ -17,7 +16,6 @@ router.post('/', upload.none(), (req, res) => {
             locale: 'vi',
             lower: true,
         })
-        console.log(slug);
         Region.create({
             name: req.body.name,
             slug: slug,
@@ -26,7 +24,6 @@ router.post('/', upload.none(), (req, res) => {
         }).then((response) => {
             res.send("Đã thêm khu vực")
         }).catch((err) => {
-            console.log(err.original.errno);
             if (err.original.errno === 1062) {
                 res.send("Slug bị trùng, vui lòng đổi")
             }

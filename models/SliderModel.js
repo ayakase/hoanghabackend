@@ -15,7 +15,7 @@ const Slider = sequelize.define('Slider', {
     },
     tour_url: {
         type: DataTypes.STRING,
-        defaultValue: ''
+        defaultValue: '/'
     }
 })
 module.exports = Slider;

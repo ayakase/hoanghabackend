@@ -13,7 +13,6 @@ const storage = new CloudinaryStorage({
 });
 const upload = multer({ storage: storage });
 router.post('/',  upload.array('images',10),(req, res) => {
-    console.log(req.files)
     res.send("success")
 });
 router.get('/', async (req, res) => {
@@ -41,7 +40,6 @@ router.get('/:cursor', async (req, res) => {
             .max_results(perPage)
             .next_cursor(req.params.cursor)
             .execute();
-        console.log(result);
         res.send(result);
     } catch (err) {
         console.error(err);

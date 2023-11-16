@@ -3,7 +3,6 @@ const router = express.Router();
 const Order = require('../../models/OrderModel')
 const Tour = require('../../models/TourModel');
 router.get('/:id', (req, res) => {
-    console.log(req.params.id)
     Order.findAll({
         where: { id: req.params.id },
         include:{

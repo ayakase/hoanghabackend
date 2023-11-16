@@ -17,7 +17,6 @@ router.get('/:page', (req, res) => {
     })
 })
 router.put('/:id', (req, res) => {
-    console.log(req.params.id);
     Order.findOne({
         where: { id: req.params.id }
     }).then((result) => {

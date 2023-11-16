@@ -16,7 +16,6 @@ router.get("/view", (req, res) => {
 });
 router.get("/order", (req, res) => {
     Order.count().then((count) => {
-        console.log(count)
         res.send(count.toString());
     }).catch((err) => {
         console.log(err)
@@ -24,7 +23,6 @@ router.get("/order", (req, res) => {
 })
 router.get("/tour", (req, res) => {
     Tour.count().then((count) => {
-        console.log(count)
         res.send(count.toString());
     }).catch((err) => {
         console.log(err)
@@ -32,7 +30,6 @@ router.get("/tour", (req, res) => {
 })
 router.get("/advise", (req, res) => {
     Advisory.count().then((count) => {
-        console.log(count)
         res.send(count.toString());
     }).catch((err) => {
         console.log(err)

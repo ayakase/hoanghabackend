@@ -6,7 +6,6 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 router.get('/:order/:state/:page', (req, res) => {
-    console.log(req.params.state);
     Order.findAndCountAll({
         where: {
             solved: req.params.state
@@ -25,7 +24,6 @@ router.get('/:order/:state/:page', (req, res) => {
     })
 })
 router.put('/:id', (req, res) => {
-    console.log(req.params.id);
     Order.findOne({
         where: { id: req.params.id }
     }).then((result) => {

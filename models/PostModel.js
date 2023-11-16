@@ -9,6 +9,10 @@ const Post = sequelize.define('Post', {
     title: {
         type: DataTypes.STRING(255),
     },
+    slug: {
+        type: DataTypes.STRING(255),
+        unique: true,
+    },
     thumbnail: {
         type: DataTypes.STRING(255),
     },
