@@ -8,7 +8,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: async (req, file) => "thumbnails_folder",
     allowed_formats: async (req, file) => ["jpg", "jpeg", "png", "gif", "webp"],
-    transformation: [{ width: 1500 }],
+    transformation: [{ width: 800 }],
   },
 });
 const upload = multer({ storage: storage });
@@ -20,6 +20,7 @@ router.post("/", upload.single("postThumbnail"), (req, res) => {
     thumbnail: req.file.path,
     content: req.body.postContent,
     publish: req.body.publishState,
+    slug: req.body.postSlug,
   })
     .then(() => {
       res.json("done");
@@ -27,6 +28,47 @@ router.post("/", upload.single("postThumbnail"), (req, res) => {
     .catch((err) => {
       console.error(err);
     });
+});
+router.put("/edit/:id", upload.single("postThumbnail"), (req, res) => {
+  console.log(req.params.id);
+  if (req.file) {
+    Post.update({
+      title: req.body.postTitle,
+      thumbnail: req.file.path,
+      content: req.body.postContent,
+      publish: req.body.publishState,
+      slug: req.body.postSlug,
+    }, {
+      where: {
+        id: req.params.id,
+      }
+    }
+    )
+      .then(() => {
+        res.json("done");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else if (!req.file) {
+    Post.update({
+      title: req.body.postTitle,
+      content: req.body.postContent,
+      publish: req.body.publishState,
+      slug: req.body.postSlug,
+    }, {
+      where: {
+        id: req.params.id,
+      }
+    }
+    )
+      .then(() => {
+        res.json("done");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 });
 
 router.get("/:publish/:order/:page", (req, res) => {
@@ -46,6 +88,7 @@ router.get("/:publish/:order/:page", (req, res) => {
       console.error(error);
     });
 });
+
 router.delete("/:id", (req, res) => {
   Post
     .destroy({ where: { id: req.params.id } })

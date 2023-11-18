@@ -33,6 +33,7 @@ const adminEachOrderRoute = require("./controllers/admin/eachOrderRoute");
 const adminRegionRoute = require("./controllers/admin/regionManageRoute");
 const adminLocationRoute = require("./controllers/admin/locationManageRoute");
 const adminNotificationRoute = require("./controllers/admin/notificationManageRoute");
+const adminPostInitialRoute = require("./controllers/admin/eachPostInitial")
 const req = require("express/lib/request");
 require("dotenv").config();
 app.use(
@@ -69,7 +70,7 @@ app.use("/admin/each-order", adminEachOrderRoute);
 app.use("/admin/region", adminRegionRoute);
 app.use("/admin/location", adminLocationRoute);
 app.use("/admin/notification", adminNotificationRoute);
-
+app.use("/admin/each-post/initial", adminPostInitialRoute);
 app.timeout = 60000;
 app.listen(PORT, () => {
   console.log(

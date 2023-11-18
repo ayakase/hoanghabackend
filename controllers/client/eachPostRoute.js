@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../../models/PostModel')
-router.get('/:id', (req, res) => {
-    console.log(req.params.id);
+router.get('/:slug', (req, res) => {
+    console.log(req.params.slug);
     Post.findAll({
-        where: { id: req.params.id },
+        where: { slug: req.params.slug },
     }).then((result) => {
         res.send(result)
     }).catch((error) => {

@@ -8,11 +8,11 @@ const storage = new CloudinaryStorage({
     params: {
         folder: async (req, file) => 'images-collection',
         allowed_formats: async (req, file) => ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-        transformation: [{ width: 1500 }],
+        transformation: [{ width: 800 }],
     },
 });
 const upload = multer({ storage: storage });
-router.post('/',  upload.array('images',10),(req, res) => {
+router.post('/', upload.array('images', 10), (req, res) => {
     res.send("success")
 });
 router.get('/', async (req, res) => {

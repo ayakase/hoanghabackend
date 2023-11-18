@@ -17,6 +17,8 @@ const Tour = require('../../models/TourModel')
 const Category = require('../../models/CategoryModel');
 const Region = require('../../models/RegionModel');
 const Location = require('../../models/LocationModel');
+const { Op } = require('sequelize');
+
 router.post('/', upload.single('tourThumbnail'), (req, res) => {
     console.log(
         req.body.tourLocation)
@@ -83,10 +85,15 @@ router.get('/choose-category', (req, res) => {
         res.send(result)
     })
 })
-router.get('/:category/:order/:page', (req, res) => {
-    const whereCondition = req.params.category !== '0' ? { category_id: req.params.category } : {};
+router.get('/:category/:order/:page/', (req, res) => {
+    console.log(req.query.keyword)
+
     Tour.findAndCountAll({
-        // where: whereCondition,
+        where: {
+            title: {
+                [Op.like]: `%${req.query.keyword}%`,
+            },
+        },
         include: {
             model: Location,
         },
