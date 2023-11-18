@@ -5,18 +5,11 @@ const Category = require('../../models/CategoryModel');
 const Region = require('../../models/RegionModel');
 const Location = require('../../models/LocationModel');
 const { Op } = require('sequelize');
-router.get('/:keyword/:orderby/:order/:page', (req, res) => {
-    console.log(req.params)
-    if (req.params.keyword !== undefined) {
-        keyword = req.params.keyword
-    } else {
-        keyword = ' '
-    }
-    console.log(keyword)
+router.get('/:orderby/:order/:page', (req, res) => {
     Tour.findAndCountAll({
         where: {
             title: {
-                [Op.like]: `%${req.params.keyword}%`,
+                [Op.like]: `%${req.query.keyword}%`,
             },
         },
         order: [[req.params.orderby, req.params.order]],
