@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Tour = require('../../models/TourModel')
 const Post = require("../../models/PostModel");
-
+const Category = require('../../models/CategoryModel');
+const Region = require('../../models/RegionModel');
+const Location = require('../../models/LocationModel');
 router.get('/hottour', (req, res) => {
     // console.log(req.params.category);
     Tour.findAndCountAll({
@@ -20,7 +22,7 @@ router.get('/hottour', (req, res) => {
 })
 router.get('/china', (req, res) => {
     Tour.findAndCountAll({
-        where: { category_id: 1 },
+        where: { location_id: 33 },
         order: [['createdAt', 'DESC']],
         limit: 10,
     }).then((result) => {
@@ -32,7 +34,21 @@ router.get('/china', (req, res) => {
 })
 router.get('/domestic', (req, res) => {
     Tour.findAndCountAll({
-        where: { category_id: 2 },
+        include: {
+            model: Location,
+            required: true,
+            include: {
+                model: Region,
+                required: true,
+                include: {
+                    model: Category,
+                    where: {
+                        id: 1
+                    },
+                    required: true
+                }
+            }
+        },
         order: [['createdAt', 'DESC']],
         limit: 10,
     }).then((result) => {
@@ -44,7 +60,21 @@ router.get('/domestic', (req, res) => {
 })
 router.get('/foreign', (req, res) => {
     Tour.findAndCountAll({
-        where: { category_id: 3 },
+        include: {
+            model: Location,
+            required: true,
+            include: {
+                model: Region,
+                required: true,
+                include: {
+                    model: Category,
+                    where: {
+                        id: 2,
+                    },
+                    required: true
+                }
+            }
+        },
         order: [['createdAt', 'DESC']],
         limit: 10,
     }).then((result) => {
