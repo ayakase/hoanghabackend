@@ -18,42 +18,42 @@ router.get('/hottour', (req, res) => {
         console.error(error);
     })
 })
-// router.get('/china', (req, res) => {
-//     Tour.findAndCountAll({
-//         where: { category_id: 1 },
-//         order: [['createdAt', 'DESC']],
-//         limit: 10,
-//     }).then((result) => {
-//         const { count, rows } = result;
-//         res.send(result)
-//     }).catch((error) => {
-//         console.error(error);
-//     })
-// })
-// router.get('/domestic', (req, res) => {
-//     Tour.findAndCountAll({
-//         where: { category_id: 2 },
-//         order: [['createdAt', 'DESC']],
-//         limit: 10,
-//     }).then((result) => {
-//         const { count, rows } = result;
-//         res.send(result)
-//     }).catch((error) => {
-//         console.error(error);
-//     })
-// })
-// router.get('/foreign', (req, res) => {
-//     Tour.findAndCountAll({
-//         where: { category_id: 3 },
-//         order: [['createdAt', 'DESC']],
-//         limit: 10,
-//     }).then((result) => {
-//         const { count, rows } = result;
-//         res.send(result)
-//     }).catch((error) => {
-//         console.error(error);
-//     })
-// })
+router.get('/china', (req, res) => {
+    Tour.findAndCountAll({
+        where: { category_id: 1 },
+        order: [['createdAt', 'DESC']],
+        limit: 10,
+    }).then((result) => {
+        const { count, rows } = result;
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
+})
+router.get('/domestic', (req, res) => {
+    Tour.findAndCountAll({
+        where: { category_id: 2 },
+        order: [['createdAt', 'DESC']],
+        limit: 10,
+    }).then((result) => {
+        const { count, rows } = result;
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
+})
+router.get('/foreign', (req, res) => {
+    Tour.findAndCountAll({
+        where: { category_id: 3 },
+        order: [['createdAt', 'DESC']],
+        limit: 10,
+    }).then((result) => {
+        const { count, rows } = result;
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
+})
 router.get("/post-grid", (req, res) => {
     Post.findAndCountAll({
         where: {

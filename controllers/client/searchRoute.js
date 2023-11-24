@@ -42,19 +42,18 @@ router.get('/side-bar-list/:category', (req, res) => {
         res.send(results)
     })
 })
-router.get('/hot-sidebar/:category', (req, res) => {
-    // Tour.findAndCountAll({
-    //     where: {
-    //         category_id: req.params.category,
-    //         ishottour: 1
-    //     },
-    //     order: [['createdAt', 'DESC']],
-    //     limit: 6,
-    // }).then((result) => {
-    //     const { count, rows } = result;
-    //     res.send(result)
-    // }).catch((error) => {
-    //     console.error(error);
-    // })
+router.get('/hot-sidebar', (req, res) => {
+    Tour.findAndCountAll({
+        where: {
+            ishottour: 1
+        },
+        order: [['createdAt', 'DESC']],
+        limit: 6,
+    }).then((result) => {
+        const { count, rows } = result;
+        res.send(result)
+    }).catch((error) => {
+        console.error(error);
+    })
 })
 module.exports = router;

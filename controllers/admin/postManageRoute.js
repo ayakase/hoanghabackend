@@ -27,6 +27,9 @@ router.post("/", upload.single("postThumbnail"), (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+      if (err.original.errno === 1062) {
+        res.send("Slug bị trùng, vui lòng đổi")
+      }
     });
 });
 router.put("/edit/:id", upload.single("postThumbnail"), (req, res) => {

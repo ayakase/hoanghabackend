@@ -52,24 +52,9 @@ router.get('/side-bar-list/:category', (req, res) => {
         res.send(results)
     })
 })
-router.get('/hot-sidebar/:category', (req, res) => {
+router.get('/hot-sidebar', (req, res) => {
 
     Tour.findAndCountAll({
-        include: {
-            model: Location,
-            required: true,
-            include: {
-                model: Region,
-                required: true,
-                include: {
-                    model: Category,
-                    where: {
-                        id: req.params.category,
-                    },
-                    required: true
-                }
-            }
-        },
         where: {
             ishottour: 1
         },
