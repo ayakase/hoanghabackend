@@ -19,8 +19,7 @@ const clientCarouselRoute = require("./controllers/client/carouselRoute")
 const clientSlideRoute = require("./controllers/client/slideRoute")
 const clientSearchRoute = require("./controllers/client/searchRoute")
 const clientInitialRoute = require("./controllers/client/initialRoute")
-
-//admin
+const clientPostRoute = require("./controllers/client/postRoute")//admin
 const adminTourRoute = require("./controllers/admin/tourManageRoute");
 const adminHotTourRoute = require("./controllers/admin/hotTourManageRoute");
 const adminAdvisoryRoute = require("./controllers/admin/advisoryManageRoute");
@@ -57,6 +56,7 @@ app.use("/client/initial", clientInitialRoute)
 app.use("/client/region", clientRegionRoute)
 app.use("/client/location", clientLocationRoute)
 app.use("/client/discount", clientDiscountRoute)
+app.use("/client/post", clientPostRoute)
 //admin
 app.use("/admin/tour", adminTourRoute);
 app.use("/admin/hottour", adminHotTourRoute);
