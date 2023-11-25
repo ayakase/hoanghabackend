@@ -9,7 +9,7 @@ const Notification = sequelize.define('Notification', {
         autoIncrement: true,
     },
     action: {
-        type: DataTypes.STRING(225),
+        type: DataTypes.TEXT,
     },
 })
 
