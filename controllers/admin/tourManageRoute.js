@@ -85,7 +85,7 @@ router.get('/choose-category', (req, res) => {
         res.send(result)
     })
 })
-router.get('/:category/:order/:page/', (req, res) => {
+router.get('/:order/:page/', (req, res) => {
     console.log(req.query.keyword)
 
     Tour.findAndCountAll({

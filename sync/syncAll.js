@@ -1,11 +1,12 @@
+const sequelize = require('../connect');
 const Tour = require('../models/TourModel')
+const User = require('../models/UserModel');
 const Order = require('../models/OrderModel');
 const Category = require('../models/CategoryModel');
 const Location = require('../models/LocationModel');
 const Region = require('../models/RegionModel');
 const Advisory = require('../models/AdvisoryModel');
 const Post = require('../models/PostModel')
-const sequelize = require('../connect');
 const Slider = require('../models/SliderModel');
 const Count = require('../models/CountModel');
 const PlaneTicket = require('../models/PlaneTicketModel');
@@ -421,6 +422,9 @@ async function syncModelsSequentially() {
 
         await Notification.sync({ force: true });
         console.log('Notification table created');
+
+        await User.sync({ force: true })
+        console.log('User table created');
     } catch (error) {
         console.error('Error creating tables:', error);
     }
